@@ -1,11 +1,21 @@
 import { getPage } from '@/sanity/sanity-utils';
 import { PortableText } from 'next-sanity';
+import type { Metadata } from 'next';
 
 type PageProps = Readonly<{
   params: {
     slug: string;
   };
 }>;
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const page = await getPage(params.slug);
+
+  return {
+    title: page.title,
+    description: page.title,
+  };
+}
 
 async function Page({ params }: PageProps) {
   const page = await getPage(params.slug);

@@ -1,4 +1,5 @@
 import { getProject } from '@/sanity/sanity-utils';
+import type { Metadata } from 'next';
 import { PortableText } from 'next-sanity';
 import Image from 'next/image';
 
@@ -7,6 +8,16 @@ type ProjectPageProps = {
     project: string;
   };
 };
+
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const slug = params.project;
+  const project = await getProject(slug);
+
+  return {
+    title: `Project: ${project.title}`,
+    description: `Project: ${project.title}`,
+  };
+}
 
 async function ProjectPage({ params }: ProjectPageProps) {
   const slug = params.project;
