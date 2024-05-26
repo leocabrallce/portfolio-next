@@ -19,9 +19,9 @@ async function ProjectPage({ params }: ProjectPageProps) {
       </header>
 
       {/* content */}
-      <div className='text-lg text-gray-700 mt-5'>
+      <article className='prose text-lg text-gray-700 mt-5'>
         <PortableText value={project.content} />
-      </div>
+      </article>
 
       {/* image */}
       <Image priority src={project.image} alt={project.title} width={1920} height={1080} className='mt-10 w-full object-cover rounded-xl' />
