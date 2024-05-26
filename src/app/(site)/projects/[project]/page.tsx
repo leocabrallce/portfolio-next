@@ -24,7 +24,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
       </div>
 
       {/* image */}
-      <Image src={project.image} alt={project.title} width={1920} height={1080} className='mt-10 w-full object-cover rounded-xl' />
+      <Image priority src={project.image} alt={project.title} width={1920} height={1080} className='mt-10 w-full object-cover rounded-xl' />
     </div>
   );
 }
