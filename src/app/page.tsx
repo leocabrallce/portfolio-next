@@ -1,16 +1,33 @@
 import { getProjects } from "@/sanity/sanity-utils";
+import Image from "next/image";
 
 export default async function Home() {
   const projects = await getProjects();
 
   return (
-    <div>
-      <h1>Projects goes here</h1>
+    <div className="max-w-5xl mx-auto py-20">
+      <h1 className="text-7xl font-extrabold">
+        Hello I&apos;m <span className="bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">Leo</span>!
+      </h1>
 
-      <div>
+      <p className="mt-3 text-xl text-gray-600">
+        I&apos;m a full-stack developer and designer. I love working with React, Next.js, and Tailwind CSS.
+      </p>
+
+      <h2 className="mt-24 font-bold text-3xl">
+        Projects
+      </h2>
+
+      <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
-          <div key={project._id}>
-            <h2>{project.title}</h2>
+          <div key={project._id} className="border border-gray-500 rounded-lg p-4">
+            {project.image ? (
+              <Image src={project.image} alt={project.title} width={250} height={100} className="object-cover w-full rounded-lg border border-gray-500" />
+            ) : null}
+
+            <div className="font-extrabold bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
+              <h3 className="mt-3 font-bold text-xl">{project.title}</h3>
+            </div>
           </div>
         ))}
       </div>
