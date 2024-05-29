@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 async function getPages() {
   const PAGES_QUERY = gql`
-    query AllPage {
+    query GetAllPages {
       allPage {
         _id
         title

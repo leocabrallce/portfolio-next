@@ -13,7 +13,7 @@ type PageProps = Readonly<{
 
 async function getPage(slug: string) {
   const PAGE_QUERY = gql`
-    query AllPage($slug: String!) {
+    query GetPage($slug: String!) {
       allPage(where: { slug: { current: { eq: $slug } } }) {
         _id
         title

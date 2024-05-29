@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 async function getProjects() {
   const PROJECTS_QUERY = gql`
-    query AllPage {
+    query GetAllProjects {
       allProject {
         _id
         _key
