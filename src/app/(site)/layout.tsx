@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import Link from "next/link";
-// import { getPages } from "@/sanity/sanity-utils";
 import { ApolloWrapper } from "@/lib/apollo/wrapper";
 import { gql } from "@apollo/client";
 import { getClient } from "@/lib/apollo/client";
@@ -12,24 +11,19 @@ export const metadata: Metadata = {
   description: "Leo Cabral's personal website",
 };
 
-const PAGES_QUERY = gql`
-  query AllPage {
-    allPage {
-      _id
-      title
-      slug {
-        current
+async function getPages() {
+  const PAGES_QUERY = gql`
+    query AllPage {
+      allPage {
+        _id
+        title
+        slug {
+          current
+        }
       }
     }
-  }
-`;
+  `;
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  // const pages = await getPages();
   const client = getClient();
 
   // TODO: Type this
@@ -44,6 +38,12 @@ export default async function RootLayout({
       slug: page.slug.current,
     };
   });
+
+  return pages;
+}
+
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+  const pages = await getPages();
 
   return (
     <html lang="en">

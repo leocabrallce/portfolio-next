@@ -1,12 +1,53 @@
-import { getProjects } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { gql } from "@apollo/client";
+import { getClient } from "@/lib/apollo/client";
+import { Project } from "@/types/Project";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
   description: "Leo Cabral's personal website",
 };
+
+async function getProjects() {
+  const PROJECTS_QUERY = gql`
+    query AllPage {
+      allProject {
+        _id
+        _key
+        _createdAt
+        title
+        slug {
+          current
+        }
+        image {
+          asset {
+            url
+          }
+        }
+      }
+    }
+`;
+
+  const client = getClient();
+
+  // TODO: Type this
+  const { data } = await client.query({
+    query: PROJECTS_QUERY,
+  });
+
+  const projects: Pick<Project, '_id' | 'title' | 'slug' | 'image'>[] = data.allProject.map((page: any): Pick<Project, '_id' | 'title' | 'slug' | 'image'> => {
+    return {
+      _id: page._id,
+      title: page.title,
+      slug: page.slug.current,
+      image: page.image.asset.url,
+    };
+  });
+
+  return projects;
+}
 
 export default async function Home() {
   const projects = await getProjects();
