@@ -1,5 +1,6 @@
 import { getPage } from '@/sanity/sanity-utils';
 import { PortableText } from 'next-sanity';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 type PageProps = Readonly<{
@@ -8,8 +9,18 @@ type PageProps = Readonly<{
   };
 }>;
 
+async function handleFetch(slug: string) {
+  const page = await getPage(slug);
+
+  if (!page) {
+    return notFound();
+  }
+
+  return page;
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const page = await getPage(params.slug);
+  const page = await handleFetch(params.slug);
 
   return {
     title: page.title,
@@ -18,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 async function Page({ params }: PageProps) {
-  const page = await getPage(params.slug);
+  const page = await handleFetch(params.slug);
 
   return (
     <div>
