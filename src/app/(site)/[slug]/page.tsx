@@ -1,9 +1,8 @@
 import { PortableText } from 'next-sanity';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { gql } from "@apollo/client";
-import { getClient } from "@/lib/apollo/client";
 import type { Page } from "@/types/Page";
+import { sdk } from "@/lib/client";
 
 type PageProps = Readonly<{
   params: {
@@ -11,42 +10,9 @@ type PageProps = Readonly<{
   };
 }>;
 
-async function getPage(slug: string) {
-  const PAGE_QUERY = gql`
-    query GetPage($slug: String!) {
-      allPage(where: { slug: { current: { eq: $slug } } }) {
-        _id
-        title
-        contentRaw
-        slug {
-          current
-        }
-      }
-    }
-  `;
-
-  const client = getClient();
-
-  // TODO: Type this
-  const { data } = await client.query({
-    query: PAGE_QUERY,
-    variables: {
-      slug: slug,
-    },
-  });
-
-  const page: Pick<Page, '_id' | 'title' | 'slug' | 'content'> = {
-    _id: data.allPage[0]._id,
-    title: data.allPage[0].title,
-    slug: data.allPage[0].slug.current,
-    content: data.allPage[0].contentRaw,
-  };
-
-  return page;
-}
-
 async function handleFetch(slug: string) {
-  const page = await getPage(slug);
+  const getPage = await sdk.GetPage({ slug });
+  const page = getPage.data.allPage[0];
 
   if (!page) {
     return notFound();
@@ -72,7 +38,7 @@ async function Page({ params }: PageProps) {
       <h1>{page.title}</h1>
 
       <article className='prose'>
-        <PortableText value={page.content} />
+        <PortableText value={page.contentRaw} />
       </article>
     </div>
   );

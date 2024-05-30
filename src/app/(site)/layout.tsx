@@ -2,48 +2,16 @@ import type { Metadata } from "next";
 import "../globals.css";
 import Link from "next/link";
 import { ApolloWrapper } from "@/lib/apollo/wrapper";
-import { gql } from "@apollo/client";
-import { getClient } from "@/lib/apollo/client";
-import type { Page } from "@/types/Page";
+import { sdk } from "@/lib/client";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
   description: "Leo Cabral's personal website",
 };
 
-async function getPages() {
-  const PAGES_QUERY = gql`
-    query GetAllPages {
-      allPage {
-        _id
-        title
-        slug {
-          current
-        }
-      }
-    }
-  `;
-
-  const client = getClient();
-
-  // TODO: Type this
-  const { data } = await client.query({
-    query: PAGES_QUERY,
-  });
-
-  const pages: Pick<Page, '_id' | 'title' | 'slug'>[] = data.allPage.map((page: any): Pick<Page, '_id' | 'title' | 'slug'> => {
-    return {
-      _id: page._id,
-      title: page.title,
-      slug: page.slug.current,
-    };
-  });
-
-  return pages;
-}
-
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
-  const pages = await getPages();
+  const getAllPages = await sdk.GetAllPages();
+  const pages = getAllPages.data.allPage;
 
   return (
     <html lang="en">
@@ -56,7 +24,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <ul className="flex gap-4">
             {pages.map((page) => (
               <li key={page._id}>
-                <Link href={`/${page.slug}`}>
+                <Link href={`/${page.slug?.current}`}>
                   {page.title}
                 </Link>
               </li>
