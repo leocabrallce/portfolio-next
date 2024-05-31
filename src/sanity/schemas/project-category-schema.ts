@@ -1,4 +1,6 @@
-const projectCategory = {
+import { defineType } from 'sanity';
+
+const projectCategory = defineType({
   title: 'Project Category',
   name: 'projectCategory',
   type: 'document',
@@ -19,6 +21,6 @@ const projectCategory = {
       type: 'image',
     }
   ]
-};
+});
 
 export default projectCategory;

@@ -1,4 +1,6 @@
-const experience = {
+import { defineType } from 'sanity';
+
+const experience = defineType({
   name: 'experience',
   title: 'Experience',
   type: 'document',
@@ -34,6 +36,6 @@ const experience = {
       type: 'text',
     },
   ],
-};
+});
 
 export default experience;

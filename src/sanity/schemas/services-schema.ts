@@ -1,4 +1,6 @@
-const services = {
+import { defineType } from "sanity";
+
+const services = defineType({
   name: 'services',
   title: 'Services',
   type: 'document',
@@ -19,6 +21,6 @@ const services = {
       type: 'number',
     },
   ],
-};
+});
 
 export default services;
