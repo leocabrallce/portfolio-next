@@ -35,7 +35,16 @@ async function ProjectPage({ params }: ProjectPageProps) {
       </header>
 
       {/* image */}
-      <Image priority src={project.image?.asset?.url} alt={project.title} width={1920} height={1080} className='mt-10 w-full object-cover rounded-xl' />
+      <Image
+        priority
+        // TODO: Add a placeholder image
+        src={project.image?.asset?.url || ''}
+        alt={project.title || `Image for project ${project._id}`}
+        width={1920}
+        height={1080}
+        style={{ viewTransitionName: `image-${project._id}` }}
+        className='mt-10 w-full object-cover rounded-xl'
+      />
 
       {/* content */}
       <article className='prose text-lg text-gray-700 mt-5'>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
 import { sdk } from "@/lib/client";
 
@@ -30,7 +30,15 @@ export default async function Home() {
         {projects.map((project) => (
           <Link href={`/projects/${project.slug?.current}`} key={project._id} className="border border-gray-500 rounded-lg p-4">
             {project.image ? (
-              <Image src={project.image.asset?.url} alt={project.title} width={750} height={300} className="object-cover w-full rounded-lg border border-gray-500" />
+              <Image
+                // TODO: Add a placeholder image
+                src={project.image.asset?.url || ""}
+                alt={project.title || `Image for project ${project._id}`}
+                width={750}
+                height={300}
+                style={{ viewTransitionName: `image-${project._id}` }}
+                className="object-cover w-full rounded-lg border border-gray-500"
+              />
             ) : null}
 
             <div className="font-extrabold bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
