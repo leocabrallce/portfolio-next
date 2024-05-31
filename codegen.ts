@@ -3,9 +3,9 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 const config: CodegenConfig = {
   overwrite: true,
   schema: "https://mt1hxcmm.api.sanity.io/v1/graphql/production/default",
-  documents: "src/types/*.(graphql)",
+  documents: "src/graphql/*.(graphql)",
   generates: {
-    "src/gql/types.ts": {
+    "src/graphql/types.ts": {
       plugins: [
         "typescript",
         "typescript-operations",
