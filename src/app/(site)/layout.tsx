@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import Link from "next/link";
-import { ApolloWrapper } from "@/lib/apollo/wrapper";
 import { sdk } from "@/lib/client";
 
 export const metadata: Metadata = {
@@ -32,9 +31,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           </ul>
         </nav>
 
-        <ApolloWrapper>
-          <main className="py-20">{children}</main>
-        </ApolloWrapper>
+        <main className="py-20">{children}</main>
       </body>
     </html>
   );

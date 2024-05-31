@@ -44,7 +44,13 @@ const project = {
       title: 'Content',
       type: 'array',
       of: [{ type: 'block' }],
-    }
+    },
+    {
+      name: 'projectCategories',
+      title: 'Project Categories',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'projectCategory' } }],
+    },
   ],
 };
 
