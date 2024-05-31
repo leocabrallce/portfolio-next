@@ -1,0 +1,19 @@
+type Service {
+  _id: ID!
+  _createdAt: DateTime!
+  _updatedAt: DateTime!
+  title: String!
+  description: String
+  order: Int
+}
+
+query GetAllServices {
+  allService {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    description
+    order
+  }
+}

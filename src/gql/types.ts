@@ -1,24 +1,24 @@
 import { GraphQLClient, RequestOptions } from 'graphql-request';
-import { GraphQLError, print } from 'graphql';
+import { GraphQLError, print } from 'graphql'
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown; }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown; }, K extends keyof T> = { [_ in K]?: never };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; };
-  String: { input: string; output: string; };
-  Boolean: { input: boolean; output: boolean; };
-  Int: { input: number; output: number; };
-  Float: { input: number; output: number; };
-  Date: { input: any; output: any; };
-  DateTime: { input: any; output: any; };
-  JSON: { input: any; output: any; };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  Date: { input: any; output: any; }
+  DateTime: { input: any; output: any; }
+  JSON: { input: any; output: any; }
 };
 
 export type Block = {
@@ -132,6 +132,59 @@ export type DocumentSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
+};
+
+export type Experience = Document & {
+  __typename?: 'Experience';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  endDate?: Maybe<Scalars['Date']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  startDate?: Maybe<Scalars['Date']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ExperienceFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  company?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  endDate?: InputMaybe<DateFilter>;
+  location?: InputMaybe<StringFilter>;
+  startDate?: InputMaybe<DateFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type ExperienceSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  company?: InputMaybe<SortOrder>;
+  description?: InputMaybe<SortOrder>;
+  endDate?: InputMaybe<SortOrder>;
+  location?: InputMaybe<SortOrder>;
+  startDate?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type File = {
@@ -304,8 +357,53 @@ export type Project = Document & {
   contentRaw?: Maybe<Scalars['JSON']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Image>;
+  projectCategories?: Maybe<Array<Maybe<ProjectCategory>>>;
   slug?: Maybe<Slug>;
   title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ProjectCategory = Document & {
+  __typename?: 'ProjectCategory';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  categoryDescription?: Maybe<Scalars['String']['output']>;
+  categoryImage?: Maybe<Image>;
+  categoryName?: Maybe<Scalars['String']['output']>;
+};
+
+export type ProjectCategoryFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  categoryDescription?: InputMaybe<StringFilter>;
+  categoryImage?: InputMaybe<ImageFilter>;
+  categoryName?: InputMaybe<StringFilter>;
+};
+
+export type ProjectCategorySorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  categoryDescription?: InputMaybe<SortOrder>;
+  categoryImage?: InputMaybe<ImageSorting>;
+  categoryName?: InputMaybe<SortOrder>;
 };
 
 export type ProjectFilter = {
@@ -339,19 +437,30 @@ export type ProjectSorting = {
 export type RootQuery = {
   __typename?: 'RootQuery';
   Document?: Maybe<Document>;
+  Experience?: Maybe<Experience>;
   Page?: Maybe<Page>;
   Project?: Maybe<Project>;
+  ProjectCategory?: Maybe<ProjectCategory>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
+  Service?: Maybe<Service>;
   allDocument: Array<Document>;
+  allExperience: Array<Experience>;
   allPage: Array<Page>;
   allProject: Array<Project>;
+  allProjectCategory: Array<ProjectCategory>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allSanityImageAsset: Array<SanityImageAsset>;
+  allService: Array<Service>;
 };
 
 
 export type RootQueryDocumentArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryExperienceArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -366,6 +475,11 @@ export type RootQueryProjectArgs = {
 };
 
 
+export type RootQueryProjectCategoryArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type RootQuerySanityFileAssetArgs = {
   id: Scalars['ID']['input'];
 };
@@ -376,11 +490,24 @@ export type RootQuerySanityImageAssetArgs = {
 };
 
 
+export type RootQueryServiceArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type RootQueryAllDocumentArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<DocumentSorting>>;
   where?: InputMaybe<DocumentFilter>;
+};
+
+
+export type RootQueryAllExperienceArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ExperienceSorting>>;
+  where?: InputMaybe<ExperienceFilter>;
 };
 
 
@@ -400,6 +527,14 @@ export type RootQueryAllProjectArgs = {
 };
 
 
+export type RootQueryAllProjectCategoryArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ProjectCategorySorting>>;
+  where?: InputMaybe<ProjectCategoryFilter>;
+};
+
+
 export type RootQueryAllSanityFileAssetArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -413,6 +548,14 @@ export type RootQueryAllSanityImageAssetArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<SanityImageAssetSorting>>;
   where?: InputMaybe<SanityImageAssetFilter>;
+};
+
+
+export type RootQueryAllServiceArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ServiceSorting>>;
+  where?: InputMaybe<ServiceFilter>;
 };
 
 export type SanityAssetSourceData = {
@@ -790,6 +933,50 @@ export type Sanity_DocumentFilter = {
   references?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type Service = Document & {
+  __typename?: 'Service';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ServiceFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  description?: InputMaybe<StringFilter>;
+  order?: InputMaybe<FloatFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type ServiceSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  description?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+};
+
 export type Slug = {
   __typename?: 'Slug';
   _key?: Maybe<Scalars['String']['output']>;
@@ -840,40 +1027,58 @@ export type StringFilter = {
   nin?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
+export type GetAllExperiencesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllExperiencesQuery = { __typename?: 'RootQuery', allExperience: Array<{ __typename?: 'Experience', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, company?: string | null, location?: string | null, startDate?: any | null, endDate?: any | null, description?: string | null }> };
+
+export type GetAllPagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllPagesQuery = { __typename?: 'RootQuery', allPage: Array<{ __typename?: 'Page', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
+
 export type GetPageQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetPageQuery = { __typename?: 'RootQuery', allPage: Array<{ __typename?: 'Page', _id?: string | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null; } | null; }>; };
-
-export type GetAllPagesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetAllPagesQuery = { __typename?: 'RootQuery', allPage: Array<{ __typename?: 'Page', _id?: string | null, title?: string | null, slug?: { __typename?: 'Slug', current?: string | null; } | null; }>; };
+export type GetPageQuery = { __typename?: 'RootQuery', allPage: Array<{ __typename?: 'Page', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
 
 export type GetAllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _key?: string | null, _createdAt?: any | null, title?: string | null, slug?: { __typename?: 'Slug', current?: string | null; } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null; } | null; } | null; }>; };
+export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
 
 export type GetProjectQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null; } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null; } | null; } | null; }>; };
+export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
+
+export type GetAllProjectCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export const GetPageDocument = gql`
-    query GetPage($slug: String!) {
-  allPage(where: {slug: {current: {eq: $slug}}}) {
+export type GetAllProjectCategoriesQuery = { __typename?: 'RootQuery', allProjectCategory: Array<{ __typename?: 'ProjectCategory', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, categoryName?: string | null, categoryDescription?: string | null, categoryImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
+
+export type GetAllServicesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllServicesQuery = { __typename?: 'RootQuery', allService: Array<{ __typename?: 'Service', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, description?: string | null, order?: number | null }> };
+
+
+export const GetAllExperiencesDocument = gql`
+    query GetAllExperiences {
+  allExperience {
     _id
+    _createdAt
+    _updatedAt
     title
-    contentRaw
-    slug {
-      current
-    }
+    company
+    location
+    startDate
+    endDate
+    description
   }
 }
     `;
@@ -881,10 +1086,27 @@ export const GetAllPagesDocument = gql`
     query GetAllPages {
   allPage {
     _id
+    _createdAt
+    _updatedAt
     title
     slug {
       current
     }
+    contentRaw
+  }
+}
+    `;
+export const GetPageDocument = gql`
+    query GetPage($slug: String!) {
+  allPage(where: {slug: {current: {eq: $slug}}}) {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    slug {
+      current
+    }
+    contentRaw
   }
 }
     `;
@@ -892,9 +1114,10 @@ export const GetAllProjectsDocument = gql`
     query GetAllProjects {
   allProject {
     _id
-    _key
     _createdAt
+    _updatedAt
     title
+    contentRaw
     slug {
       current
     }
@@ -908,9 +1131,10 @@ export const GetAllProjectsDocument = gql`
     `;
 export const GetProjectDocument = gql`
     query GetProject($slug: String!) {
-  allProject(where: {slug: {current: {eq: $slug}}}, limit: 1) {
+  allProject(where: {slug: {current: {eq: $slug}}}) {
     _id
     _createdAt
+    _updatedAt
     title
     contentRaw
     slug {
@@ -924,28 +1148,68 @@ export const GetProjectDocument = gql`
   }
 }
     `;
+export const GetAllProjectCategoriesDocument = gql`
+    query GetAllProjectCategories {
+  allProjectCategory {
+    _id
+    _createdAt
+    _updatedAt
+    categoryName
+    categoryDescription
+    categoryImage {
+      asset {
+        url
+      }
+    }
+  }
+}
+    `;
+export const GetAllServicesDocument = gql`
+    query GetAllServices {
+  allService {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    description
+    order
+  }
+}
+    `;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
-const GetPageDocumentString = print(GetPageDocument);
+const GetAllExperiencesDocumentString = print(GetAllExperiencesDocument);
 const GetAllPagesDocumentString = print(GetAllPagesDocument);
+const GetPageDocumentString = print(GetPageDocument);
 const GetAllProjectsDocumentString = print(GetAllProjectsDocument);
 const GetProjectDocumentString = print(GetProjectDocument);
+const GetAllProjectCategoriesDocumentString = print(GetAllProjectCategoriesDocument);
+const GetAllServicesDocumentString = print(GetAllServicesDocument);
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    GetPage(variables: GetPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPageQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-      return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetPageQuery>(GetPageDocumentString, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetPage', 'query', variables);
+    GetAllExperiences(variables?: GetAllExperiencesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllExperiencesQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllExperiencesQuery>(GetAllExperiencesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllExperiences', 'query', variables);
     },
     GetAllPages(variables?: GetAllPagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllPagesQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-      return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllPagesQuery>(GetAllPagesDocumentString, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetAllPages', 'query', variables);
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllPagesQuery>(GetAllPagesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllPages', 'query', variables);
+    },
+    GetPage(variables: GetPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPageQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetPageQuery>(GetPageDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPage', 'query', variables);
     },
     GetAllProjects(variables?: GetAllProjectsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllProjectsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-      return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllProjectsQuery>(GetAllProjectsDocumentString, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetAllProjects', 'query', variables);
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllProjectsQuery>(GetAllProjectsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllProjects', 'query', variables);
     },
     GetProject(variables: GetProjectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetProjectQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
-      return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetProjectQuery>(GetProjectDocumentString, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetProject', 'query', variables);
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetProjectQuery>(GetProjectDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetProject', 'query', variables);
+    },
+    GetAllProjectCategories(variables?: GetAllProjectCategoriesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllProjectCategoriesQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllProjectCategoriesQuery>(GetAllProjectCategoriesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllProjectCategories', 'query', variables);
+    },
+    GetAllServices(variables?: GetAllServicesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllServicesQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllServicesQuery>(GetAllServicesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllServices', 'query', variables);
     }
   };
 }

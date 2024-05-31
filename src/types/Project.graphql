@@ -1,0 +1,45 @@
+type Project {
+  _id: ID!
+  _createdAt: DateTime!
+  _updatedAt: DateTime!
+  title: String!
+  slug: String!
+  image: String!
+  content: String!
+}
+
+query GetAllProjects {
+  allProject {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    contentRaw
+    slug {
+      current
+    }
+    image {
+      asset {
+        url
+      }
+    }
+  }
+}
+
+query GetProject($slug: String!) {
+  allProject(where: { slug: { current: { eq: $slug } } }) {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    contentRaw
+    slug {
+      current
+    }
+    image {
+      asset {
+        url
+      }
+    }
+  }
+}

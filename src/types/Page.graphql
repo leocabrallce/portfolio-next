@@ -1,0 +1,34 @@
+type Page {
+  _id: ID!
+  _createdAt: DateTime!
+  _updatedAt: DateTime!
+  title: String!
+  slug: String!
+  content: String!
+}
+
+query GetAllPages {
+  allPage {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    slug {
+      current
+    }
+    contentRaw
+  }
+}
+
+query GetPage($slug: String!) {
+  allPage(where: { slug: { current: { eq: $slug } } }) {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    slug {
+      current
+    }
+    contentRaw
+  }
+}

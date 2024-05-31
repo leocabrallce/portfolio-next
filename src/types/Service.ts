@@ -1,4 +1,4 @@
-type Services = {
+type Service = {
   _id: string;
   _createdAt: string;
   title: string;
@@ -6,4 +6,4 @@ type Services = {
   order: number;
 };
 
-export default Services;
+export default Service;

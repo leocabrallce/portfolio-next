@@ -1,0 +1,25 @@
+type Experience {
+  _id: ID!
+  _createdAt: DateTime!
+  _updatedAt: DateTime!
+  title: String!
+  company: String!
+  location: String
+  startDate: String!
+  endDate: String
+  description: String
+}
+
+query GetAllExperiences {
+  allExperience {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    company
+    location
+    startDate
+    endDate
+    description
+  }
+}

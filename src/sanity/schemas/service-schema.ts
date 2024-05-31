@@ -1,8 +1,8 @@
 import { defineType } from "sanity";
 
-const services = defineType({
-  name: 'services',
-  title: 'Services',
+const service = defineType({
+  name: 'service',
+  title: 'Service',
   type: 'document',
   fields: [
     {
@@ -23,4 +23,4 @@ const services = defineType({
   ],
 });
 
-export default services;
+export default service;
