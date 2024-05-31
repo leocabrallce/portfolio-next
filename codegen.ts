@@ -1,8 +1,10 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
+const GRAPHQL_URL: string = process.env.NEXT_PUBLIC_GRAPHQL_API_URL as string;
+
 const config: CodegenConfig = {
   overwrite: true,
-  schema: "https://mt1hxcmm.api.sanity.io/v1/graphql/production/default",
+  schema: GRAPHQL_URL,
   documents: "src/**/*.(tsx|ts|graphql)",
   generates: {
     "src/gql/generated.ts": {
