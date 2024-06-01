@@ -21,6 +21,13 @@ query GetAllProjects {
     image {
       asset {
         url
+        metadata {
+          dimensions {
+            width
+            height
+          }
+          lqip
+        }
       }
     }
     projectCategories {
@@ -43,6 +50,13 @@ query GetProject($slug: String!) {
     image {
       asset {
         url
+        metadata {
+          dimensions {
+            width
+            height
+          }
+          lqip
+        }
       }
     }
     projectCategories {

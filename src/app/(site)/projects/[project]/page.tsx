@@ -37,11 +37,12 @@ async function ProjectPage({ params }: ProjectPageProps) {
       {/* image */}
       <Image
         priority
-        // TODO: Add a placeholder image
+        placeholder="blur"
+        blurDataURL={project.image?.asset?.metadata?.lqip || ""}
         src={project.image?.asset?.url || ''}
         alt={project.title || `Image for project ${project._id}`}
-        width={1920}
-        height={1080}
+        width={project.image?.asset?.metadata?.dimensions?.width || 1920}
+        height={project.image?.asset?.metadata?.dimensions?.height || 1080}
         style={{ viewTransitionName: `image-${project._id}` }}
         className='mt-10 w-full object-cover rounded-xl'
       />

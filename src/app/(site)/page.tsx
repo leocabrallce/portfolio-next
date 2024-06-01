@@ -43,11 +43,12 @@ export default async function Home() {
           <Link href={`/projects/${project.slug?.current}`} key={project._id} className="border border-gray-500 rounded-lg p-4">
             {project.image ? (
               <Image
-                // TODO: Add a placeholder image
+                placeholder="blur"
+                blurDataURL={project.image?.asset?.metadata?.lqip || ""}
                 src={project.image.asset?.url || ""}
                 alt={project.title || `Image for project ${project._id}`}
-                width={750}
-                height={300}
+                width={project.image.asset?.metadata?.dimensions?.width || 300}
+                height={project.image.asset?.metadata?.dimensions?.height || 200}
                 style={{ viewTransitionName: `image-${project._id}` }}
                 className="object-cover w-full rounded-lg border border-gray-500"
               />
