@@ -7,11 +7,9 @@ type Service {
   order: Int
 }
 
-query GetAllServices {
-  allService {
+query GetAllServices($sort: [ServiceSorting!]) {
+  allService(sort: $sort) {
     _id
-    _createdAt
-    _updatedAt
     title
     description
     order

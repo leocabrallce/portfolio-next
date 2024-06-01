@@ -6,18 +6,18 @@ const projectCategory = defineType({
   type: 'document',
   fields: [
     {
-      title: 'Category Name',
-      name: 'categoryName',
+      title: 'Name',
+      name: 'name',
       type: 'string',
     },
     {
-      title: 'Category Description',
-      name: 'categoryDescription',
+      title: 'Description',
+      name: 'description',
       type: 'text',
     },
     {
-      title: 'Category Image',
-      name: 'categoryImage',
+      title: 'Image',
+      name: 'image',
       type: 'image',
     }
   ]

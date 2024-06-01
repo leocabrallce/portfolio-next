@@ -2,9 +2,9 @@ type ProjectCategory {
   _id: ID!
   _createdAt: DateTime!
   _updatedAt: DateTime!
-  categoryName: String!
-  categoryDescription: String
-  categoryImage: String
+  name: String!
+  description: String
+  image: String
 }
 
 query GetAllProjectCategories {
@@ -12,9 +12,9 @@ query GetAllProjectCategories {
     _id
     _createdAt
     _updatedAt
-    categoryName
-    categoryDescription
-    categoryImage {
+    name
+    description
+    image {
       asset {
         url
       }

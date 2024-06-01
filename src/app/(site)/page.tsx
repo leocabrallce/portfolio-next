@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
 import { sdk } from "@/lib/client";
+import { SortOrder } from "@/graphql/types";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
@@ -11,6 +12,17 @@ export const metadata: Metadata = {
 export default async function Home() {
   const getAllProjects = await sdk.GetAllProjects();
   const projects = getAllProjects.data.allProject;
+
+  const getAllServices = await sdk.GetAllServices(
+    {
+      sort: [
+        {
+          order: SortOrder.Asc,
+        },
+      ]
+    }
+  );
+  const services = getAllServices.data.allService;
 
   return (
     <div>

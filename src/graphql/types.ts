@@ -375,9 +375,9 @@ export type ProjectCategory = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  categoryDescription?: Maybe<Scalars['String']['output']>;
-  categoryImage?: Maybe<Image>;
-  categoryName?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Image>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export type ProjectCategoryFilter = {
@@ -389,9 +389,9 @@ export type ProjectCategoryFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
-  categoryDescription?: InputMaybe<StringFilter>;
-  categoryImage?: InputMaybe<ImageFilter>;
-  categoryName?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  name?: InputMaybe<StringFilter>;
 };
 
 export type ProjectCategorySorting = {
@@ -401,9 +401,9 @@ export type ProjectCategorySorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
-  categoryDescription?: InputMaybe<SortOrder>;
-  categoryImage?: InputMaybe<ImageSorting>;
-  categoryName?: InputMaybe<SortOrder>;
+  description?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageSorting>;
+  name?: InputMaybe<SortOrder>;
 };
 
 export type ProjectFilter = {
@@ -1047,24 +1047,26 @@ export type GetPageQuery = { __typename?: 'RootQuery', allPage: Array<{ __typena
 export type GetAllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
+export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null }> };
 
 export type GetProjectQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
+export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null }> };
 
 export type GetAllProjectCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProjectCategoriesQuery = { __typename?: 'RootQuery', allProjectCategory: Array<{ __typename?: 'ProjectCategory', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, categoryName?: string | null, categoryDescription?: string | null, categoryImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
+export type GetAllProjectCategoriesQuery = { __typename?: 'RootQuery', allProjectCategory: Array<{ __typename?: 'ProjectCategory', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, name?: string | null, description?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
 
-export type GetAllServicesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllServicesQueryVariables = Exact<{
+  sort?: InputMaybe<Array<ServiceSorting> | ServiceSorting>;
+}>;
 
 
-export type GetAllServicesQuery = { __typename?: 'RootQuery', allService: Array<{ __typename?: 'Service', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, description?: string | null, order?: number | null }> };
+export type GetAllServicesQuery = { __typename?: 'RootQuery', allService: Array<{ __typename?: 'Service', _id?: string | null, title?: string | null, description?: string | null, order?: number | null }> };
 
 
 export const GetAllExperiencesDocument = gql`
@@ -1126,6 +1128,10 @@ export const GetAllProjectsDocument = gql`
         url
       }
     }
+    projectCategories {
+      _id
+      name
+    }
   }
 }
     `;
@@ -1145,6 +1151,10 @@ export const GetProjectDocument = gql`
         url
       }
     }
+    projectCategories {
+      _id
+      name
+    }
   }
 }
     `;
@@ -1154,9 +1164,9 @@ export const GetAllProjectCategoriesDocument = gql`
     _id
     _createdAt
     _updatedAt
-    categoryName
-    categoryDescription
-    categoryImage {
+    name
+    description
+    image {
       asset {
         url
       }
@@ -1165,11 +1175,9 @@ export const GetAllProjectCategoriesDocument = gql`
 }
     `;
 export const GetAllServicesDocument = gql`
-    query GetAllServices {
-  allService {
+    query GetAllServices($sort: [ServiceSorting!]) {
+  allService(sort: $sort) {
     _id
-    _createdAt
-    _updatedAt
     title
     description
     order

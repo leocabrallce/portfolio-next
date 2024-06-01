@@ -6,6 +6,7 @@ type Project {
   slug: String!
   image: String!
   content: String!
+  projectCategories: [ProjectCategory!]!
 }
 
 query GetAllProjects {
@@ -23,8 +24,13 @@ query GetAllProjects {
         url
       }
     }
+    projectCategories {
+      _id
+      name
+    }
   }
 }
+
 
 query GetProject($slug: String!) {
   allProject(where: { slug: { current: { eq: $slug } } }) {
@@ -40,6 +46,10 @@ query GetProject($slug: String!) {
       asset {
         url
       }
+    }
+    projectCategories {
+      _id
+      name
     }
   }
 }
