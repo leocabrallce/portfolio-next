@@ -5,7 +5,7 @@ type Project {
   title: String!
   slug: String!
   image: String!
-  content: String!
+  content: [ProjectTopic!]!
   projectCategories: [ProjectCategory!]!
 }
 
@@ -15,7 +15,6 @@ query GetAllProjects {
     _createdAt
     _updatedAt
     title
-    contentRaw
     slug {
       current
     }
@@ -38,7 +37,6 @@ query GetProject($slug: String!) {
     _createdAt
     _updatedAt
     title
-    contentRaw
     slug {
       current
     }
@@ -50,6 +48,11 @@ query GetProject($slug: String!) {
     projectCategories {
       _id
       name
+    }
+    content {
+      _id
+      title
+      contentRaw
     }
   }
 }
