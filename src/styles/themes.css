@@ -1,15 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Base theme */
-@layer base {
-  html {
+html[data-theme='alt'] {
   --color-primary: theme('colors.cyan.400');
   --color-secondary: theme('colors.fuchsia.400');
   --color-primary-light: theme('colors.zinc.50');
   --color-primary-dark: theme('colors.zinc.900');
-  }
 }
-
-@import "/styles/themes.css";

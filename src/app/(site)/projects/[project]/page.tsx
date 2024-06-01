@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { PortableText } from 'next-sanity';
 import Image from 'next/image';
-import { sdk } from "@/lib/client";
+import { sdk } from "@/lib/graphql-request";
 
 type ProjectPageProps = {
   params: {

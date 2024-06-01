@@ -1,7 +1,7 @@
 import { PortableText } from 'next-sanity';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { sdk } from "@/lib/client";
+import { sdk } from "@/lib/graphql-request";
 
 type PageProps = Readonly<{
   params: {

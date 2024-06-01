@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
-import { sdk } from "@/lib/client";
+import { sdk } from "@/lib/graphql-request";
 import { SortOrder } from "@/graphql/types";
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default async function Home() {
   return (
     <div>
       <h1 className="text-7xl font-extrabold">
-        Hello I&apos;m <span className="bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">Leo</span>!
+        Hello I&apos;m <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Leo</span>!
       </h1>
 
       <p className="mt-3 text-xl text-gray-600">

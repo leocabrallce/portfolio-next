@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { Link } from "next-view-transitions";
-import { sdk } from "@/lib/client";
-import { ViewTransitions } from 'next-view-transitions';
+import { Link, ViewTransitions } from "next-view-transitions";
+import { sdk } from "@/lib/graphql-request";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
