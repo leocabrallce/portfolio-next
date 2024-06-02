@@ -4,22 +4,16 @@ type Props = {
   items: {
     name: string;
     link: string;
-    icon?: JSX.Element;
   }[];
-  className?: string;
 };
 
-function Navbar({ items, className }: Props) {
+function Navbar({ items }: Props) {
   return (
-    <nav className="bg-black text-white flex justify-between py-2 px-4 sm:py-4 sm:px-8">
-      <Link href="/" className="text-lg font-bold">
-        Leo
-      </Link>
-
-      <ul className="flex gap-4">
+    <nav>
+      <ul className="flex flex-col gap-2">
         {items.map((item) => (
           <li key={`link-${item.name}`}>
-            <Link href={item.link}>
+            <Link href={item.link} className='text-primary-dark text-lg underline hover:opacity-75 transition-colors'>
               {item.name}
             </Link>
           </li>

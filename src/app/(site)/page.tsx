@@ -6,6 +6,7 @@ import { sdk } from "@/lib/graphql-request";
 import { SortOrder } from "@/graphql/types";
 // TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
 import { getImageUrl } from "@/utils/imageUrlBuilder";
+import Hero from "@/components/Hero/Hero";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
@@ -19,34 +20,9 @@ export default async function Home() {
   const getAllServices = await sdk.GetAllServices({ sort: [{ order: SortOrder.Asc }] });
   const services = getAllServices.data.allService;
 
-  const getHero = await sdk.GetHero({ limit: 1 });
-  const hero = getHero.data.allHero[0];
-
-  const heroImageUrl = getImageUrl(hero?.image as SanityImage);
-
   return (
     <div>
-      <h1 className="text-7xl font-extrabold">
-        Hello I&apos;m <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Leo</span>!
-      </h1>
-
-      <p className="mt-3 text-xl text-gray-600">
-        {hero?.description}
-      </p>
-
-      <div className="h-80 w-80">
-        <Image
-          priority
-          placeholder="blur"
-          src={heroImageUrl}
-          // width and height here should match the redered size, not the default image size
-          width={320}
-          height={320}
-          blurDataURL={hero?.image?.asset?.metadata?.lqip || ""}
-          alt={hero?.image?.asset?.altText || "profile picture"}
-          className="object-cover w-full rounded-lg border border-gray-500 mt-8"
-        />
-      </div>
+      <Hero />
 
       <h2 className="mt-24 font-bold text-3xl">
         Projects

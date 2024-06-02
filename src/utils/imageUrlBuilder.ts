@@ -27,6 +27,6 @@ export function getImageUrl(image: Image): string {
   const left = Math.floor(data.width * crop.left);
   const top = Math.floor(data.height * crop.top);
 
-  // gather into a url
-  return builder.image(data.source).rect(left, top, croppedWidth, croppedHeight).fit("max").auto("format").dpr(2).url();
+  // generate the url
+  return builder.image(data.source).rect(left, top, croppedWidth, croppedHeight).fit("max").auto("format").dpr(2).quality(100).url();
 }

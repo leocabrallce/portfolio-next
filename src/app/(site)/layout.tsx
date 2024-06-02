@@ -32,12 +32,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <ViewTransitions>
       <html lang="en" className={rootClassNames}>
         <body className="overscroll-y-none">
-          <Navbar items={pages} />
           <FloatingNavbar items={pages} />
 
-          <div className="py-2 px-4 sm:py-4 sm:px-8">
-            <main className="">{children}</main>
-          </div>
+
+          <main>{children}</main>
         </body>
       </html>
     </ViewTransitions>
