@@ -4,12 +4,14 @@ import experience from './experience-schema';
 import service from './service-schema';
 import projectCategory from './project-category-schema';
 import projectTopic from './project-topic-schema';
+import hero from './hero-schema';
 
 const schemas = [
-  project,
+  hero,
   page,
-  experience,
   service,
+  experience,
+  project,
   projectCategory,
   projectTopic,
 ];

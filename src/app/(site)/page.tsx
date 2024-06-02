@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { sdk } from "@/lib/graphql-request";
 import { SortOrder } from "@/graphql/types";
+import { getImageUrl } from "@/utils/imageUrlBuilder";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
@@ -16,6 +17,16 @@ export default async function Home() {
   const getAllServices = await sdk.GetAllServices({ sort: [{ order: SortOrder.Asc }] });
   const services = getAllServices.data.allService;
 
+  const getHero = await sdk.GetHero({ limit: 1 });
+  const hero = getHero.data.allHero[0];
+
+  const heroImageUrl = getImageUrl(
+    hero?.image?.asset?.url || "",
+    hero?.image?.asset?.metadata?.dimensions?.width || 300,
+    hero?.image?.asset?.metadata?.dimensions?.height || 300,
+    hero?.image?.crop
+  );
+
   return (
     <div>
       <h1 className="text-7xl font-extrabold">
@@ -23,8 +34,22 @@ export default async function Home() {
       </h1>
 
       <p className="mt-3 text-xl text-gray-600">
-        I&apos;m a full-stack developer and designer. I love working with React, Next.js, and Tailwind CSS.
+        {hero?.description}
       </p>
+
+      <div className="h-80 w-80">
+        <Image
+          priority
+          placeholder="blur"
+          src={heroImageUrl}
+          // width and height here should match the redered size, not the default image size
+          width={320}
+          height={320}
+          blurDataURL={hero?.image?.asset?.metadata?.lqip || ""}
+          alt={hero?.image?.asset?.altText || "profile picture"}
+          className="object-cover w-full rounded-lg border border-gray-500 mt-8"
+        />
+      </div>
 
       <h2 className="mt-24 font-bold text-3xl">
         Projects
@@ -35,6 +60,7 @@ export default async function Home() {
           <Link href={`/projects/${project.slug?.current}`} key={project._id} className="border border-gray-500 rounded-lg p-4">
             {project.image ? (
               <Image
+                loading="lazy"
                 placeholder="blur"
                 blurDataURL={project.image?.asset?.metadata?.lqip || ""}
                 src={project.image.asset?.url || ""}

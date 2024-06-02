@@ -19,14 +19,27 @@ query GetAllProjects {
       current
     }
     image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
       asset {
         url
+        altText
         metadata {
+          lqip
           dimensions {
             width
             height
           }
-          lqip
         }
       }
     }
@@ -48,14 +61,27 @@ query GetProject($slug: String!) {
       current
     }
     image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
       asset {
         url
+        altText
         metadata {
+          lqip
           dimensions {
             width
             height
           }
-          lqip
         }
       }
     }

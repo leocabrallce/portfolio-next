@@ -247,6 +247,47 @@ export type GeopointSorting = {
   lng?: InputMaybe<SortOrder>;
 };
 
+export type Hero = Document & {
+  __typename?: 'Hero';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']['output']>;
+  _key?: Maybe<Scalars['String']['output']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']['output']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']['output']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Image>;
+};
+
+export type HeroFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  description?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+};
+
+export type HeroSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  description?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageSorting>;
+};
+
 export type IdFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['ID']['input']>;
@@ -477,6 +518,7 @@ export type RootQuery = {
   __typename?: 'RootQuery';
   Document?: Maybe<Document>;
   Experience?: Maybe<Experience>;
+  Hero?: Maybe<Hero>;
   Page?: Maybe<Page>;
   Project?: Maybe<Project>;
   ProjectCategory?: Maybe<ProjectCategory>;
@@ -486,6 +528,7 @@ export type RootQuery = {
   Service?: Maybe<Service>;
   allDocument: Array<Document>;
   allExperience: Array<Experience>;
+  allHero: Array<Hero>;
   allPage: Array<Page>;
   allProject: Array<Project>;
   allProjectCategory: Array<ProjectCategory>;
@@ -502,6 +545,11 @@ export type RootQueryDocumentArgs = {
 
 
 export type RootQueryExperienceArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type RootQueryHeroArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -554,6 +602,14 @@ export type RootQueryAllExperienceArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<ExperienceSorting>>;
   where?: InputMaybe<ExperienceFilter>;
+};
+
+
+export type RootQueryAllHeroArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<HeroSorting>>;
+  where?: InputMaybe<HeroFilter>;
 };
 
 
@@ -1086,6 +1142,13 @@ export type GetAllExperiencesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllExperiencesQuery = { __typename?: 'RootQuery', allExperience: Array<{ __typename?: 'Experience', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, company?: string | null, location?: string | null, startDate?: any | null, endDate?: any | null, description?: string | null }> };
 
+export type GetHeroQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetHeroQuery = { __typename?: 'RootQuery', allHero: Array<{ __typename?: 'Hero', description?: string | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null }> };
+
 export type GetAllPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1101,14 +1164,14 @@ export type GetPageQuery = { __typename?: 'RootQuery', allPage: Array<{ __typena
 export type GetAllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null }> };
+export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null }> };
 
 export type GetProjectQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null, content?: Array<{ __typename?: 'ProjectTopic', _id?: string | null, title?: string | null, contentRaw?: any | null } | null> | null }> };
+export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null, content?: Array<{ __typename?: 'ProjectTopic', _id?: string | null, title?: string | null, contentRaw?: any | null } | null> | null }> };
 
 export type GetAllProjectCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1140,6 +1203,38 @@ export const GetAllExperiencesDocument = gql`
     startDate
     endDate
     description
+  }
+}
+    `;
+export const GetHeroDocument = gql`
+    query GetHero($limit: Int) {
+  allHero(limit: $limit) {
+    description
+    image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
+      asset {
+        url
+        altText
+        metadata {
+          lqip
+          dimensions {
+            width
+            height
+          }
+        }
+      }
+    }
   }
 }
     `;
@@ -1182,14 +1277,27 @@ export const GetAllProjectsDocument = gql`
       current
     }
     image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
       asset {
         url
+        altText
         metadata {
+          lqip
           dimensions {
             width
             height
           }
-          lqip
         }
       }
     }
@@ -1211,14 +1319,27 @@ export const GetProjectDocument = gql`
       current
     }
     image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
       asset {
         url
+        altText
         metadata {
+          lqip
           dimensions {
             width
             height
           }
-          lqip
         }
       }
     }
@@ -1277,6 +1398,7 @@ export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, str
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
 const GetAllExperiencesDocumentString = print(GetAllExperiencesDocument);
+const GetHeroDocumentString = print(GetHeroDocument);
 const GetAllPagesDocumentString = print(GetAllPagesDocument);
 const GetPageDocumentString = print(GetPageDocument);
 const GetAllProjectsDocumentString = print(GetAllProjectsDocument);
@@ -1288,6 +1410,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     GetAllExperiences(variables?: GetAllExperiencesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllExperiencesQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllExperiencesQuery>(GetAllExperiencesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllExperiences', 'query', variables);
+    },
+    GetHero(variables?: GetHeroQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetHeroQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetHeroQuery>(GetHeroDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetHero', 'query', variables);
     },
     GetAllPages(variables?: GetAllPagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllPagesQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllPagesQuery>(GetAllPagesDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllPages', 'query', variables);

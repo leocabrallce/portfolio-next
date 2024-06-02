@@ -1,0 +1,38 @@
+type Project {
+  _id: ID!
+  _createdAt: DateTime!
+  _updatedAt: DateTime!
+  description: String!
+  image: String!
+}
+
+query GetHero($limit: Int) {
+  allHero(limit: $limit) {
+    description
+    image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
+      asset {
+        url
+        altText
+        metadata {
+          lqip
+          dimensions {
+            width
+            height
+          }
+        }
+      }
+    }
+  }
+}
