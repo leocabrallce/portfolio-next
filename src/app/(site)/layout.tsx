@@ -1,8 +1,10 @@
 import "../globals.css";
 import type { Metadata } from "next";
-import { Link, ViewTransitions } from "next-view-transitions";
+import { ViewTransitions } from "next-view-transitions";
 import { Inter, Josefin_Sans } from 'next/font/google';
 import { clsx } from "clsx";
+import FloatingNavbar from "@/components/FloatingNavbar";
+import { Navbar } from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,34 +23,19 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   const pages = [
-    { _id: "about", title: "About", slug: { current: "about" } },
-    { _id: "projects", title: "Projects", slug: { current: "projects" } },
+    { name: "About", link: "/about" },
+    { name: "Projects", link: "/projects" },
   ];
   const rootClassNames = clsx(inter.variable, josefinSans.variable);
 
   return (
     <ViewTransitions>
       <html lang="en" className={rootClassNames}>
-        <body className="relative overscroll-y-none">
-          <nav className="sticky top-0 z-10 bg-black text-white flex justify-between py-2 px-4 sm:py-4 sm:px-8">
-            <Link href="/" className="text-lg font-bold">
-              Leo
-            </Link>
-
-            <ul className="flex gap-4">
-              {pages.map((page) => (
-                <li key={page._id}>
-                  <Link href={`/${page.slug?.current}`}>
-                    {page.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
+        <body className="overscroll-y-none">
+          <Navbar items={pages} />
+          <FloatingNavbar items={pages} />
 
           <div className="py-2 px-4 sm:py-4 sm:px-8">
-            {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
             <main className="">{children}</main>
           </div>
         </body>

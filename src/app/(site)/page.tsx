@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
-import type { Metadata } from "next";
 import { sdk } from "@/lib/graphql-request";
 import { SortOrder } from "@/graphql/types";
 
@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <div>
-      <h1 className="text-7xl font-extrabold font-hero">
+      <h1 className="text-7xl font-extrabold">
         Hello I&apos;m <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Leo</span>!
       </h1>
 
