@@ -1,33 +1,32 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "@/utils/sanityClient";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { Image } from "@/graphql/types";
 
 const builder = imageUrlBuilder(sanityClient);
 
-type Crop = {
-  __typename?: "SanityImageCrop" | undefined;
-  bottom?: number | null | undefined;
-  left?: number | null | undefined;
-  top?: number | null | undefined;
-  right?: number | null | undefined;
-};
+export function getImageUrl(image: Image): string {
+  const data = {
+    source: image?.asset?.url || "",
+    width: image?.asset?.metadata?.dimensions?.width || 300,
+    height: image?.asset?.metadata?.dimensions?.height || 300,
+    crop: image?.crop
+  };
 
-export function getImageUrl(source: SanityImageSource, width: number, height: number, cropDimentions: Crop | null | undefined): string {
   const crop = {
-    left: cropDimentions?.left || 0,
-    right: cropDimentions?.right || 0,
-    top: cropDimentions?.top || 0,
-    bottom: cropDimentions?.bottom || 0,
+    left: data.crop?.left || 0,
+    right: data.crop?.right || 0,
+    top: data.crop?.top || 0,
+    bottom: data.crop?.bottom || 0,
   };
 
   // compute the cropped image's area
-  const croppedWidth = Math.floor(width * (1 - (crop.right + crop.left)));
-  const croppedHeight = Math.floor(height * (1 - (crop.top + crop.bottom)));
+  const croppedWidth = Math.floor(data.width * (1 - (crop.right + crop.left)));
+  const croppedHeight = Math.floor(data.height * (1 - (crop.top + crop.bottom)));
 
   // compute the cropped image's position
-  const left = Math.floor(width * crop.left);
-  const top = Math.floor(height * crop.top);
+  const left = Math.floor(data.width * crop.left);
+  const top = Math.floor(data.height * crop.top);
 
   // gather into a url
-  return builder.image(source).rect(left, top, croppedWidth, croppedHeight).fit("max").auto("format").dpr(2).url();
+  return builder.image(data.source).rect(left, top, croppedWidth, croppedHeight).fit("max").auto("format").dpr(2).url();
 }

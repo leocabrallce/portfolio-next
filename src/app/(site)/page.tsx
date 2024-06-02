@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import type { Image as SanityImage } from "@/graphql/types";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { sdk } from "@/lib/graphql-request";
 import { SortOrder } from "@/graphql/types";
+// TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
 import { getImageUrl } from "@/utils/imageUrlBuilder";
 
 export const metadata: Metadata = {
@@ -20,12 +22,7 @@ export default async function Home() {
   const getHero = await sdk.GetHero({ limit: 1 });
   const hero = getHero.data.allHero[0];
 
-  const heroImageUrl = getImageUrl(
-    hero?.image?.asset?.url || "",
-    hero?.image?.asset?.metadata?.dimensions?.width || 300,
-    hero?.image?.asset?.metadata?.dimensions?.height || 300,
-    hero?.image?.crop
-  );
+  const heroImageUrl = getImageUrl(hero?.image as SanityImage);
 
   return (
     <div>
@@ -63,7 +60,7 @@ export default async function Home() {
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL={project.image?.asset?.metadata?.lqip || ""}
-                src={project.image.asset?.url || ""}
+                src={getImageUrl(project.image as SanityImage)}
                 alt={project.title || `Image for project ${project._id}`}
                 width={project.image.asset?.metadata?.dimensions?.width || 300}
                 height={project.image.asset?.metadata?.dimensions?.height || 200}
