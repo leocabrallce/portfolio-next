@@ -9,7 +9,9 @@
   --color-secondary: theme('colors.fuchsia.400');
   --color-primary-light: theme('colors.zinc.50');
   --color-primary-dark: theme('colors.zinc.900');
-  }
+
+  @apply font-sans;
+}
 }
 
 @import "/styles/themes.css";
