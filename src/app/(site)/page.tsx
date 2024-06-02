@@ -13,15 +13,7 @@ export default async function Home() {
   const getAllProjects = await sdk.GetAllProjects();
   const projects = getAllProjects.data.allProject;
 
-  const getAllServices = await sdk.GetAllServices(
-    {
-      sort: [
-        {
-          order: SortOrder.Asc,
-        },
-      ]
-    }
-  );
+  const getAllServices = await sdk.GetAllServices({ sort: [{ order: SortOrder.Asc }] });
   const services = getAllServices.data.allService;
 
   return (

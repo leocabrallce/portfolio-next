@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
 import "../globals.css";
+import type { Metadata } from "next";
 import { Link, ViewTransitions } from "next-view-transitions";
-import { sdk } from "@/lib/graphql-request";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
@@ -9,15 +8,17 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
-  const getAllPages = await sdk.GetAllPages();
-  const pages = getAllPages.data.allPage;
+  const pages = [
+    { _id: "about", title: "About", slug: { current: "about" } },
+    { _id: "projects", title: "Projects", slug: { current: "projects" } },
+  ];
 
   return (
     <ViewTransitions>
       <html lang="en">
-        <body className="max-w-3xl mx-auto py-10">
-          <nav className="flex justify-between">
-            <Link href="/" className="text-lg font-bold bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
+        <body className="relative overscroll-y-none">
+          <nav className="sticky top-0 z-10 bg-black text-white flex justify-between py-2 px-4 sm:py-4 sm:px-8">
+            <Link href="/" className="text-lg font-bold">
               Leo
             </Link>
 
@@ -32,7 +33,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             </ul>
           </nav>
 
-          <main className="py-20">{children}</main>
+
+          <div className="py-2 px-4 sm:py-4 sm:px-8">
+            {/* We've used 3xl here, but feel free to try other max-widths based on your needs */}
+            <main className="">{children}</main>
+          </div>
         </body>
       </html>
     </ViewTransitions>
