@@ -4,6 +4,7 @@ import { ViewTransitions } from "next-view-transitions";
 import { Inter, Josefin_Sans } from 'next/font/google';
 import { clsx } from "clsx";
 import FloatingNavbar from "@/components/FloatingNavbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,6 +35,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <FloatingNavbar items={pages} />
 
           <main>{children}</main>
+
+          <Footer />
         </body>
       </html>
     </ViewTransitions>

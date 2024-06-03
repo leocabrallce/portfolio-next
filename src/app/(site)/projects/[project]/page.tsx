@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { PortableText } from 'next-sanity';
-import Image from 'next/image';
 import { sdk } from "@/lib/graphql-request";
 import Hero from '@/components/Hero/Hero';
 import type { Image as SanityImage } from "@/graphql/types";
