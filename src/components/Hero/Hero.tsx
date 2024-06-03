@@ -49,12 +49,13 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
             width={image?.asset?.metadata?.dimensions?.width || 1920}
             height={image?.asset?.metadata?.dimensions?.height || 1080}
             blurDataURL={image?.asset?.metadata?.lqip || ""}
-            alt={image?.asset?.altText || "profile picture"}
+            alt={"profile picture"}
             style={{ viewTransitionName: `image-${image?.asset?._id}` }}
             className="w-full h-full object-cover"
           />
+
           <div className="absolute bottom-0 w-full" style={{ viewTransitionName: "hero-subtitle" }}>
-            <div className="h-16 bg-primary-dark dark:bg-primary-light dark:text-primary-dark flex items-center pl-16">{subtitle}</div>
+            <div className="h-16 bg-primary-dark dark:bg-primary-light text-primary-light dark:text-primary-dark flex items-center pl-16">{subtitle}</div>
           </div>
         </div>
       </div>

@@ -30,16 +30,6 @@ const project = defineType({
       options: {
         hotspot: true,
       },
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative text',
-          type: 'string',
-          options: {
-            isHighlighted: true,
-          },
-        },
-      ],
     },
     {
       name: 'content',

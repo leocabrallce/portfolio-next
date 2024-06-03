@@ -36,7 +36,6 @@ query GetAllProjects {
       asset {
         _id
         url
-        altText
         metadata {
           lqip
           dimensions {
@@ -80,7 +79,6 @@ query GetProject($slug: String!) {
       asset {
         _id
         url
-        altText
         metadata {
           lqip
           dimensions {
