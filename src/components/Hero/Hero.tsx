@@ -30,7 +30,7 @@ async function Hero() {
           </div>
           <div className="flex flex-col justify-end grow-0 shrink-0">
             <div className="p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark">
-              <p className="text-lg">{hero?.description}</p>
+              <p className="text-lg leading-6">{hero?.description}</p>
             </div>
           </div>
         </div>
