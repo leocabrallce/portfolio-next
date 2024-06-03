@@ -5,6 +5,7 @@ import service from './service-schema';
 import projectCategory from './project-category-schema';
 import projectTopic from './project-topic-schema';
 import hero from './hero-schema';
+import codeSandboxPreview from './code-sandbox-preview-schema';
 
 const schemas = [
   hero,
@@ -14,6 +15,7 @@ const schemas = [
   project,
   projectCategory,
   projectTopic,
+  codeSandboxPreview,
 ];
 
 export default schemas;

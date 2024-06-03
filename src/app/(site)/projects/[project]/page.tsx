@@ -2,11 +2,18 @@ import type { Metadata } from 'next';
 import { PortableText } from 'next-sanity';
 import { sdk } from "@/lib/graphql-request";
 import HeroProject from '@/components/HeroProject/HeroProject';
+import CodeSandboxPreview from '@/components/CodeSandboxPreview';
 
 type ProjectPageProps = {
   params: {
     project: string;
   };
+};
+
+const PTcomponents = {
+  types: {
+    codeSandboxPreview: CodeSandboxPreview,
+  }
 };
 
 async function handleFetchProject(slug: string) {
@@ -39,7 +46,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
             project.content?.map((block, index) => (
               <>
                 <h3>{block?.title}</h3>
-                <PortableText key={index} value={block?.contentRaw} />
+                <PortableText key={index} value={block?.contentRaw} components={PTcomponents} />
               </>
             ))
           }

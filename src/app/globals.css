@@ -5,13 +5,13 @@
 /* Base theme */
 @layer base {
   html {
-  --color-primary: theme('colors.cyan.400');
-  --color-secondary: theme('colors.fuchsia.400');
-  --color-primary-light: theme('colors.zinc.50');
-  --color-primary-dark: theme('colors.zinc.900');
+    --color-primary: theme("colors.cyan.400");
+    --color-secondary: theme("colors.fuchsia.400");
+    --color-primary-light: theme("colors.zinc.50");
+    --color-primary-dark: theme("colors.zinc.900");
 
-  @apply font-sans;
-}
+    @apply font-sans;
+  }
 }
 
 @import "/styles/themes.css";
