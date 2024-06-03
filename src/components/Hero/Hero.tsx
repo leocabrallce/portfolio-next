@@ -35,7 +35,7 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
               {title}
             </div>
           </div>
-          <div className="flex flex-col justify-end grow-0 shrink-0">
+          <div className="flex flex-col justify-end grow-0 shrink-0" style={{ viewTransitionName: "hero-description" }}>
             <div className="p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark dark:border-primary-light">
               <p className="text-lg leading-6" style={{ viewTransitionName: `description-${description}` }}>{description}</p>
             </div>
@@ -53,7 +53,7 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
             style={{ viewTransitionName: `image-${image?.asset?._id}` }}
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-0 w-full">
+          <div className="absolute bottom-0 w-full" style={{ viewTransitionName: "hero-subtitle" }}>
             <div className="h-16 bg-primary-dark dark:bg-primary-light dark:text-primary-dark flex items-center pl-16">{subtitle}</div>
           </div>
         </div>
