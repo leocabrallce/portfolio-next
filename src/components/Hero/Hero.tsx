@@ -24,7 +24,7 @@ async function Hero() {
           <div className="flex flex-col justify-between pt-16 h-1/2 grow-0 shrink-0">
             <Navbar items={pages} />
 
-            <div className="text-[6.75rem] leading-[5.5rem] -mb-4 -ml-3 font-hero font-normal uppercase">
+            <div className="text-[6.75rem] leading-[5.5rem] -mb-4 -ml-3 font-title font-normal uppercase">
               Léo Cabral
             </div>
           </div>
@@ -39,9 +39,8 @@ async function Hero() {
             priority
             placeholder="blur"
             src={heroImageUrl}
-            // width and height here should match the redered size, not the default image size
-            width={200}
-            height={200}
+            width={hero?.image?.asset?.metadata?.dimensions?.width || 1920}
+            height={hero?.image?.asset?.metadata?.dimensions?.height || 1080}
             blurDataURL={hero?.image?.asset?.metadata?.lqip || ""}
             alt={hero?.image?.asset?.altText || "profile picture"}
             className="w-full h-full object-cover"

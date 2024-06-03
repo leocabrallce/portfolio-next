@@ -3,6 +3,7 @@ type Project {
   _createdAt: DateTime!
   _updatedAt: DateTime!
   title: String!
+  description: String!
   slug: String!
   image: String!
   content: [ProjectTopic!]!
@@ -15,6 +16,7 @@ query GetAllProjects {
     _createdAt
     _updatedAt
     title
+    description
     slug {
       current
     }

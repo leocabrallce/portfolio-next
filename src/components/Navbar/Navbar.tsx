@@ -13,7 +13,7 @@ function Navbar({ items }: Props) {
       <ul className="flex flex-col gap-2">
         {items.map((item) => (
           <li key={`link-${item.name}`}>
-            <Link href={item.link} className='text-primary-dark text-lg underline hover:opacity-75 transition-colors'>
+            <Link href={item.link} className='text-primary-dark text-lg underline hover:text-primary transition-colors'>
               {item.name}
             </Link>
           </li>

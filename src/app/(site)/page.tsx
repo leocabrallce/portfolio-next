@@ -24,32 +24,54 @@ export default async function Home() {
     <div>
       <Hero />
 
-      <h2 className="mt-24 font-bold text-3xl">
-        Projects
-      </h2>
+      <div className="my-8 mx-24">
+        <h2 className="font-title uppercase my-24 text-3xl">
+          Recent work
+        </h2>
 
-      <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          <Link href={`/projects/${project.slug?.current}`} key={project._id} className="border border-gray-500 rounded-lg p-4">
-            {project.image ? (
-              <Image
-                loading="lazy"
-                placeholder="blur"
-                blurDataURL={project.image?.asset?.metadata?.lqip || ""}
-                src={getImageUrl(project.image as SanityImage)}
-                alt={project.title || `Image for project ${project._id}`}
-                width={project.image.asset?.metadata?.dimensions?.width || 300}
-                height={project.image.asset?.metadata?.dimensions?.height || 200}
-                style={{ viewTransitionName: `image-${project._id}` }}
-                className="object-cover w-full rounded-lg border border-gray-500"
-              />
-            ) : null}
+        <div className="flex flex-col divide-y">
+          {projects.map((project) => (
+            <Link key={project._id} href={`/projects/${project.slug?.current}`} className="group hover:text-primary transition-colors">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between py-8">
+                <div className="flex flex-col gap-4 grow basis-1/4">
+                  <h3 className="text-lg">{project.title}</h3>
+                </div>
 
-            <div className="font-extrabold bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
-              <h3 className="mt-3 font-bold text-xl">{project.title}</h3>
-            </div>
-          </Link>
-        ))}
+                {/* categories */}
+                <div className="flex flex-col shrink-0 md:flex-row md:items-center md:justify-between grow basis-1/4">
+                  {/* pills with categories */}
+                  {project.projectCategories?.map((category) => (
+                    <span key={category?._id} className="bg-primary-light text-primary-dark border border-primary-dark border-opacity-25 px-4 py-2 rounded-full text-sm mr-2">
+                      {category?.name}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="grow basis-1/4">
+                  <p className="text-lg">{project.description}</p>
+                </div>
+
+                <div className="basis-1/4">
+                  {project.image ? (
+                    <div className="h-40 w-full">
+                      <Image
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL={project.image?.asset?.metadata?.lqip || ""}
+                        src={getImageUrl(project.image as SanityImage)}
+                        alt={project.title || `Image for project ${project._id}`}
+                        width={356}
+                        height={200}
+                        style={{ viewTransitionName: `image-${project._id}` }}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

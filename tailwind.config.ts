@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from 'tailwindcss/colors';
 
 const config: Config = {
   content: [
@@ -10,13 +11,19 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)"],
-        hero: ["var(--font-josefin-sans)"],
+        title: ["var(--font-josefin-sans)"],
       },
+      // colors: {
+      //   primary: 'var(--color-primary)',
+      //   secondary: 'var(--color-secondary)',
+      //   "primary-light": 'var(--color-primary-light)',
+      //   "primary-dark": 'var(--color-primary-dark)',
+      // },
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        "primary-light": 'var(--color-primary-light)',
-        "primary-dark": 'var(--color-primary-dark)',
+        primary: colors.cyan['400'],
+        secondary: colors.fuchsia['400'],
+        "primary-light": colors.zinc['50'],
+        "primary-dark": colors.zinc['900'],
       },
     },
   },
