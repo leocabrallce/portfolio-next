@@ -5,17 +5,21 @@ import { sdk } from "@/lib/graphql-request";
 import { getImageUrl } from "@/utils/imageUrlBuilder";
 import { Navbar } from "@/components/Navbar";
 
+type HeroProps = {
+  title: string;
+  description: string;
+  subtitle: string;
+  image: SanityImage;
+};
 
-async function Hero() {
+
+async function Hero({ title, description, subtitle, image }: HeroProps) {
   const pages = [
     { name: "About", link: "/about" },
     { name: "Projects", link: "/projects" },
   ];
 
-  const getHero = await sdk.GetHero({ limit: 1 });
-  const hero = getHero.data.allHero[0];
-
-  const heroImageUrl = getImageUrl(hero?.image as SanityImage);
+  const heroImageUrl = getImageUrl(image as SanityImage);
 
   return (
     <div className="relative h-screen w-screen border-[32px] border-primary-dark bg-primary-light text-lg text-primary-dark">
@@ -25,12 +29,12 @@ async function Hero() {
             <Navbar items={pages} />
 
             <div className="text-[6.75rem] leading-[5.5rem] -mb-4 -ml-3 font-title font-normal uppercase">
-              Léo Cabral
+              {title}
             </div>
           </div>
           <div className="flex flex-col justify-end grow-0 shrink-0">
             <div className="p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark">
-              <p className="text-lg leading-6">{hero?.description}</p>
+              <p className="text-lg leading-6">{description}</p>
             </div>
           </div>
         </div>
@@ -39,14 +43,14 @@ async function Hero() {
             priority
             placeholder="blur"
             src={heroImageUrl}
-            width={hero?.image?.asset?.metadata?.dimensions?.width || 1920}
-            height={hero?.image?.asset?.metadata?.dimensions?.height || 1080}
-            blurDataURL={hero?.image?.asset?.metadata?.lqip || ""}
-            alt={hero?.image?.asset?.altText || "profile picture"}
+            width={image?.asset?.metadata?.dimensions?.width || 1920}
+            height={image?.asset?.metadata?.dimensions?.height || 1080}
+            blurDataURL={image?.asset?.metadata?.lqip || ""}
+            alt={image?.asset?.altText || "profile picture"}
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-0 w-full">
-            <div className="h-16 bg-primary-dark text-primary-light flex items-center pl-16">Currently living in Barcelona</div>
+            <div className="h-16 bg-primary-dark text-primary-light flex items-center pl-16">{subtitle}</div>
           </div>
         </div>
       </div>

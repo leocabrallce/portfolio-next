@@ -21,9 +21,12 @@ export default async function Home() {
   const getAllServices = await sdk.GetAllServices({ sort: [{ order: SortOrder.Asc }] });
   const services = getAllServices.data.allService;
 
+  const getHero = await sdk.GetHero({ limit: 1 });
+  const hero = getHero.data.allHero[0];
+
   return (
     <div>
-      <Hero />
+      <Hero title="Léo Cabral" subtitle="Currently living in Barcelona" description={hero.description || ""} image={hero.image as SanityImage} />
 
       <div className="my-8 mx-24 flex flex-col gap-16">
         <section>
