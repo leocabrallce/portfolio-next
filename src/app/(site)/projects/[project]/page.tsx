@@ -37,30 +37,20 @@ async function ProjectPage({ params }: ProjectPageProps) {
     <div>
       <Hero title={project.title || ""} description={project.description || ""} subtitle={subtitle} image={project.image as SanityImage} />
 
-      <header className='flex justify-between items-center'>
-        <h1 className='text-5xl font-extrabold bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent'>{project.title}</h1>
-      </header>
+      <div className='my-8 mx-24 flex flex-col gap-16'>
+        <h2 className="font-title uppercase my-24 text-6xl">
+          {project.title}
+        </h2>
 
-      {/* image */}
-      <Image
-        priority
-        placeholder="blur"
-        blurDataURL={project.image?.asset?.metadata?.lqip || ""}
-        src={project.image?.asset?.url || ''}
-        alt={project.title || `Image for project ${project._id}`}
-        width={project.image?.asset?.metadata?.dimensions?.width || 1920}
-        height={project.image?.asset?.metadata?.dimensions?.height || 1080}
-        className='mt-10 w-full object-cover rounded-xl'
-      />
-
-      {/* content */}
-      <article className='prose text-lg text-gray-700 mt-5'>
-        {
-          project.content?.map((block, index) => (
-            <PortableText key={index} value={block?.contentRaw} />
-          ))
-        }
-      </article>
+        {/* content */}
+        <article className='prose text-lg text-gray-700 mt-5'>
+          {
+            project.content?.map((block, index) => (
+              <PortableText key={index} value={block?.contentRaw} />
+            ))
+          }
+        </article>
+      </div>
     </div>
   );
 }
