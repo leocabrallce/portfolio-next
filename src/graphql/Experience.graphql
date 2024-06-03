@@ -10,8 +10,8 @@ type Experience {
   description: String
 }
 
-query GetAllExperiences {
-  allExperience {
+query GetAllExperiences($sort: [ExperienceSorting!]) {
+  allExperience(sort: $sort) {
     _id
     _createdAt
     _updatedAt

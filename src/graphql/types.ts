@@ -1137,7 +1137,9 @@ export type StringFilter = {
   nin?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
-export type GetAllExperiencesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllExperiencesQueryVariables = Exact<{
+  sort?: InputMaybe<Array<ExperienceSorting> | ExperienceSorting>;
+}>;
 
 
 export type GetAllExperiencesQuery = { __typename?: 'RootQuery', allExperience: Array<{ __typename?: 'Experience', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, company?: string | null, location?: string | null, startDate?: any | null, endDate?: any | null, description?: string | null }> };
@@ -1192,8 +1194,8 @@ export type GetAllServicesQuery = { __typename?: 'RootQuery', allService: Array<
 
 
 export const GetAllExperiencesDocument = gql`
-    query GetAllExperiences {
-  allExperience {
+    query GetAllExperiences($sort: [ExperienceSorting!]) {
+  allExperience(sort: $sort) {
     _id
     _createdAt
     _updatedAt

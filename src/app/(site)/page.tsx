@@ -7,6 +7,7 @@ import { SortOrder } from "@/graphql/types";
 // TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
 import { getImageUrl } from "@/utils/imageUrlBuilder";
 import Hero from "@/components/Hero/Hero";
+import Experiences from "@/components/Sections/Experiences/Experiences";
 
 export const metadata: Metadata = {
   title: "Leo Cabral",
@@ -90,6 +91,8 @@ export default async function Home() {
             ))}
           </div>
         </section>
+
+        <Experiences />
       </div>
     </div>
   );
