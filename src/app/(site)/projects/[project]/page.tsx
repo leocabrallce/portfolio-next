@@ -49,7 +49,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
                   <h3 className='sticky top-8 bottom-8'>{block?.title}</h3>
                 </div>
 
-                <div className='md:col-span-3 prose max-w-none text-primary-dark dark:text-primary-light dark:prose-invert'>
+                <div className='md:col-span-3 prose text-lg max-w-none text-primary-dark dark:text-primary-light dark:prose-invert'>
                   <PortableText value={block?.contentRaw} components={PTcomponents} />
                 </div>
               </div>
