@@ -22,7 +22,7 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
   const heroImageUrl = getImageUrl(image as SanityImage);
 
   return (
-    <div className="relative h-screen w-screen border-[32px] border-primary-dark bg-primary-light text-lg text-primary-dark">
+    <div className="relative h-screen w-screen border-[32px] border-primary-dark dark:border-primary-light bg-primary-light dark:bg-primary-dark text-lg ">
       <div className="flex justify-between h-full">
         <div className="basis-3/5 col-span-2 ml-16 flex flex-col justify-between max-h-screen">
           <div className="flex flex-col justify-between pt-16 h-1/2 grow-0 shrink-0">
@@ -36,7 +36,7 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
             </div>
           </div>
           <div className="flex flex-col justify-end grow-0 shrink-0">
-            <div className="p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark">
+            <div className="p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark dark:border-primary-light">
               <p className="text-lg leading-6" style={{ viewTransitionName: `description-${description}` }}>{description}</p>
             </div>
           </div>
@@ -54,7 +54,7 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-0 w-full">
-            <div className="h-16 bg-primary-dark text-primary-light flex items-center pl-16">{subtitle}</div>
+            <div className="h-16 bg-primary-dark dark:bg-primary-light dark:text-primary-dark flex items-center pl-16">{subtitle}</div>
           </div>
         </div>
       </div>

@@ -26,14 +26,14 @@ function Footer() {
   ];
 
   return (
-    <footer className="mx-8 mt-20 p-16 text-lg flex flex-row justify-between items-center bg-primary-dark text-primary-light">
+    <footer className="mx-8 mt-20 p-16 text-lg flex flex-row justify-between items-center bg-primary-dark dark:bg-primary-light text-primary-light dark:text-primary-dark">
       <p className="text-center">
         &copy; {moment().format('YYYY')} Leonardo Cabral
       </p>
 
       <div className='flex flex-row gap-4'>
         {links.map((link, idx) => (
-          <Link key={`link-${idx}`} href={link.link} className='text-primary-light hover:text-primary underline'>
+          <Link key={`link-${idx}`} href={link.link} className=' hover:text-primary underline'>
             {link.name}
           </Link>
         ))}

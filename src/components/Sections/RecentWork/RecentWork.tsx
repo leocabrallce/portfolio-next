@@ -30,7 +30,7 @@ function RecentWork({ projects }: Props) {
               <div className="flex flex-col shrink-0 md:flex-row md:items-center md:justify-between grow basis-1/4">
                 {/* pills with categories */}
                 {project.projectCategories?.map((category) => (
-                  <span key={category?._id} className="bg-primary-light text-primary-dark/50 border border-primary-dark/25 px-4 py-2 rounded-full text-xs mr-2">
+                  <span key={category?._id} className="bg-primary-light/50 dark:bg-primary-dark/50 border border-primary-dark/25 dark:border-primary-light/25 px-4 py-2 rounded-full text-xs mr-2">
                     {category?.name}
                   </span>
                 ))}

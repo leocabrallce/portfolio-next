@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     // { name: "About", link: "/about" },
     // { name: "Projects", link: "/projects" },
   ];
-  const rootClassNames = clsx(inter.variable, josefinSans.variable);
+  const rootClassNames = clsx(inter.variable, josefinSans.variable, "bg-primary-light text-primary-dark dark:bg-primary-dark dark:text-primary-light");
 
   return (
     <ViewTransitions>

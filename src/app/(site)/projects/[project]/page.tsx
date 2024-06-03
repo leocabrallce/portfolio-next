@@ -42,7 +42,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
         </h2>
 
         {/* content */}
-        <article className='prose text-lg text-gray-700 mt-5'>
+        <article className='prose text-lg mt-5 text-primary-dark dark:text-primary-light dark:prose-invert'>
           {
             project.content?.map((block, index) => (
               <PortableText key={index} value={block?.contentRaw} />

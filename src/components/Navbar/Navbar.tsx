@@ -20,7 +20,7 @@ function Navbar({ items }: Props) {
         {
           !isRoot && (
             <li>
-              <Link href="/" className='text-primary-dark text-lg underline hover:text-primary transition-colors'>
+              <Link href="/" className=' text-lg underline hover:text-primary transition-colors'>
                 Home
               </Link>
             </li>
@@ -28,7 +28,7 @@ function Navbar({ items }: Props) {
         }
         {items.map((item) => (
           <li key={`link-${item.name}`}>
-            <Link href={item.link} className='text-primary-dark text-lg underline hover:text-primary transition-colors'>
+            <Link href={item.link} className=' text-lg underline hover:text-primary transition-colors'>
               {item.name}
             </Link>
           </li>

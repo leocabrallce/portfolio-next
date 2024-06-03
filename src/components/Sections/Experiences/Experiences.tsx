@@ -16,13 +16,13 @@ function Experiences({ experiences }: Props) {
         Experiences
       </h2>
 
-      <dl className="mt-10 space-y-6 divide-y divide-primary-dark/10">
+      <dl className="mt-10 space-y-6 divide-y divide-primary-dark dark:divide-primary-light">
         {experiences.map((experience) => (
           <Disclosure as="div" key={experience._id} className="pt-6">
             {({ open }) => (
               <>
                 <dt>
-                  <DisclosureButton className="flex w-full items-start justify-between text-left text-primary-dark">
+                  <DisclosureButton className="flex w-full items-start justify-between text-left ">
                     <div className="grid grid-cols-4 w-full">
                       <span className="leading-5 text-2xl uppercase">{experience.company}</span>
                       <span className="text-lg">{moment(experience.startDate).format("MMM YYYY")} - {experience.endDate ? moment(experience.endDate).format("MMM YYYY") : "Present"}</span>
@@ -48,7 +48,7 @@ function Experiences({ experiences }: Props) {
                 >
                   <DisclosurePanel as="dd" className="mt-2 pr-12">
                     <div className="grid grid-cols-1 sm:grid-cols-4 my-16">
-                      <p className="text-lg leading-6 text-primary-dark sm:col-start-2 sm:col-span-3">{experience.description}</p>
+                      <p className="text-lg leading-6  sm:col-start-2 sm:col-span-3">{experience.description}</p>
                     </div>
                   </DisclosurePanel>
                 </Transition>
@@ -75,10 +75,10 @@ function Experiences({ experiences }: Props) {
 
       {/* <Accordion as="dl" className="mt-10 space-y-6 divide-y divide-primary-dark/10">
         {experiences.map((experience) => (
-          <AccordionItem key={experience._id} as="dt" aria-label={experience.company || ""} title={experience.company || ""} className="flex w-full items-start justify-between text-left text-primary-dark">
+          <AccordionItem key={experience._id} as="dt" aria-label={experience.company || ""} title={experience.company || ""} className="flex w-full items-start justify-between text-left ">
             <dd className="mt-2 pr-12">
               <div className="grid grid-cols-1 sm:grid-cols-4 my-16">
-                <p className="text-lg leading-6 text-primary-dark sm:col-start-2 sm:col-span-3">{experience.description}</p>
+                <p className="text-lg leading-6  sm:col-start-2 sm:col-span-3">{experience.description}</p>
               </div>
             </dd>
           </AccordionItem>
