@@ -22,7 +22,7 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
   const heroImageUrl = getImageUrl(image as SanityImage);
 
   return (
-    <div className="relative h-screen w-screen border-[32px] border-primary-dark dark:border-primary-light bg-primary-light dark:bg-primary-dark text-lg ">
+    <div className="relative h-screen w-screen max-w-full border-[32px] border-primary-dark dark:border-primary-light bg-primary-light dark:bg-primary-dark text-lg ">
       <div className="flex justify-between h-full">
         <div className="basis-3/5 col-span-2 ml-16 flex flex-col justify-between max-h-screen">
           <div className="flex flex-col justify-between pt-16 h-1/2 grow-0 shrink-0">

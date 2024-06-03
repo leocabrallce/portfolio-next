@@ -32,8 +32,8 @@ function Footer() {
       </p>
 
       <div className='flex flex-row gap-4'>
-        {links.map((link, idx) => (
-          <Link key={`link-${idx}`} href={link.link} className=' hover:text-primary underline'>
+        {links.map((link) => (
+          <Link key={link.link} href={link.link} className=' hover:text-primary underline' target='_blank'>
             {link.name}
           </Link>
         ))}
