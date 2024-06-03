@@ -26,6 +26,9 @@ export default async function Home() {
   const getHero = await sdk.GetHero({ limit: 1 });
   const hero = getHero.data.allHero[0];
 
+  const getAllExperiences = await sdk.GetAllExperiences({ sort: [{ startDate: SortOrder.Desc }] });
+  const experiences = getAllExperiences.data.allExperience;
+
   return (
     <div>
       <Hero title="Léo Cabral" subtitle="Currently living in Barcelona" description={hero.description || ""} image={hero.image as SanityImage} />
@@ -35,7 +38,7 @@ export default async function Home() {
 
         <Services services={services} />
 
-        <Experiences />
+        <Experiences experiences={experiences} />
       </div>
     </div>
   );

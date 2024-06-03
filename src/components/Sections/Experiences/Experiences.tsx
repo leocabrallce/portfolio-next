@@ -1,16 +1,15 @@
-// TODO: Refactor this component to be a client component
-/* eslint-disable @next/next/no-async-client-component */
 "use client";
-import { Disclosure, DisclosureButton, DisclosurePanel, Transition } from "@headlessui/react";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/20/solid";
-import { sdk } from "@/lib/graphql-request";
-import { SortOrder } from "@/graphql/types";
+import { Transition } from "@headlessui/react";
+import { Experience as ExperienceType } from "@/graphql/types";
 import moment from "moment";
 
-async function Experiences() {
-  const getAllExperiences = await sdk.GetAllExperiences({ sort: [{ startDate: SortOrder.Desc }] });
-  const experiences = getAllExperiences.data.allExperience;
+type Props = {
+  experiences: ExperienceType[];
+};
 
+function Experiences({ experiences }: Props) {
   return (
     <section>
       <h2 className="font-title uppercase my-24 text-6xl">
@@ -58,6 +57,33 @@ async function Experiences() {
           </Disclosure>
         ))}
       </dl>
+
+      {/* <Accordion selectionMode="multiple">
+        {experiences.map((experience) => (
+          <AccordionItem key={experience._id} aria-label={experience.company || ""} title={
+            <div className="grid grid-cols-4 w-full">
+              <span className="leading-5 text-2xl uppercase">{experience.company}</span>
+              <span className="text-lg">{moment(experience.startDate).format("MMM YYYY")} - {experience.endDate ? moment(experience.endDate).format("MMM YYYY") : "Present"}</span>
+              <span className="text-lg">{experience.location}</span>
+              <span className="text-lg">{experience.title}</span>
+            </div>
+          }>
+            {experience.description}
+          </AccordionItem>
+        ))}
+      </Accordion> */}
+
+      {/* <Accordion as="dl" className="mt-10 space-y-6 divide-y divide-primary-dark/10">
+        {experiences.map((experience) => (
+          <AccordionItem key={experience._id} as="dt" aria-label={experience.company || ""} title={experience.company || ""} className="flex w-full items-start justify-between text-left text-primary-dark">
+            <dd className="mt-2 pr-12">
+              <div className="grid grid-cols-1 sm:grid-cols-4 my-16">
+                <p className="text-lg leading-6 text-primary-dark sm:col-start-2 sm:col-span-3">{experience.description}</p>
+              </div>
+            </dd>
+          </AccordionItem>
+        ))}
+      </Accordion> */}
     </section>
   );
 }

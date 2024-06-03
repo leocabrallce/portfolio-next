@@ -26,7 +26,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="mx-8 mt-20 p-16 flex flex-row justify-between items-center bg-primary-dark text-primary-light">
+    <footer className="mx-8 mt-20 p-16 text-lg flex flex-row justify-between items-center bg-primary-dark text-primary-light">
       <p className="text-center">
         &copy; {moment().format('YYYY')} Leonardo Cabral
       </p>
