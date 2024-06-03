@@ -4,7 +4,6 @@ import { ViewTransitions } from "next-view-transitions";
 import { Inter, Josefin_Sans } from 'next/font/google';
 import { clsx } from "clsx";
 import FloatingNavbar from "@/components/FloatingNavbar";
-import { Navbar } from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,9 +21,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
-  const pages = [
-    { name: "About", link: "/about" },
-    { name: "Projects", link: "/projects" },
+  const pages: { name: string; link: string; }[] = [
+    // { name: "About", link: "/about" },
+    // { name: "Projects", link: "/projects" },
   ];
   const rootClassNames = clsx(inter.variable, josefinSans.variable);
 
@@ -33,7 +32,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <html lang="en" className={rootClassNames}>
         <body className="overscroll-y-none">
           <FloatingNavbar items={pages} />
-
 
           <main>{children}</main>
         </body>

@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { PortableText } from 'next-sanity';
 import Image from 'next/image';
 import { sdk } from "@/lib/graphql-request";
+import Hero from '@/components/Hero/Hero';
+import type { Image as SanityImage } from "@/graphql/types";
 
 type ProjectPageProps = {
   params: {
@@ -28,8 +30,13 @@ async function ProjectPage({ params }: ProjectPageProps) {
   const slug = params.project;
   const project = await handleFetchProject(slug);
 
+  const categories = project.projectCategories?.map((category) => category?.name).join(', ');
+  const subtitle = categories ? `Categories: ${categories}` : '';
+
   return (
     <div>
+      <Hero title={project.title || ""} description={project.description || ""} subtitle={subtitle} image={project.image as SanityImage} />
+
       <header className='flex justify-between items-center'>
         <h1 className='text-5xl font-extrabold bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent'>{project.title}</h1>
       </header>
@@ -43,7 +50,6 @@ async function ProjectPage({ params }: ProjectPageProps) {
         alt={project.title || `Image for project ${project._id}`}
         width={project.image?.asset?.metadata?.dimensions?.width || 1920}
         height={project.image?.asset?.metadata?.dimensions?.height || 1080}
-        style={{ viewTransitionName: `image-${project._id}` }}
         className='mt-10 w-full object-cover rounded-xl'
       />
 

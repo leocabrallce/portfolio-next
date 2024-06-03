@@ -23,6 +23,7 @@ query GetHero($limit: Int) {
         y
       }
       asset {
+        _id
         url
         altText
         metadata {

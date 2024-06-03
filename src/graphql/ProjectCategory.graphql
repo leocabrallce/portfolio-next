@@ -16,6 +16,7 @@ query GetAllProjectCategories {
     description
     image {
       asset {
+        _id
         url
       }
     }

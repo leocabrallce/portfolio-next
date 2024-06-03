@@ -14,9 +14,9 @@ type HeroProps = {
 
 
 async function Hero({ title, description, subtitle, image }: HeroProps) {
-  const pages = [
-    { name: "About", link: "/about" },
-    { name: "Projects", link: "/projects" },
+  const pages: { name: string; link: string; }[] = [
+    // { name: "About", link: "/about" },
+    // { name: "Projects", link: "/projects" },
   ];
 
   const heroImageUrl = getImageUrl(image as SanityImage);
@@ -28,13 +28,16 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
           <div className="flex flex-col justify-between pt-16 h-1/2 grow-0 shrink-0">
             <Navbar items={pages} />
 
-            <div className="text-[6.75rem] leading-[5.5rem] -mb-4 -ml-3 font-title font-normal uppercase">
+            <div
+              className="text-[6.75rem] leading-[5.5rem] -mb-4 -ml-3 font-title font-normal uppercase"
+              style={{ viewTransitionName: `title-${title}` }}
+            >
               {title}
             </div>
           </div>
           <div className="flex flex-col justify-end grow-0 shrink-0">
             <div className="p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark">
-              <p className="text-lg leading-6">{description}</p>
+              <p className="text-lg leading-6" style={{ viewTransitionName: `description-${description}` }}>{description}</p>
             </div>
           </div>
         </div>
@@ -47,6 +50,7 @@ async function Hero({ title, description, subtitle, image }: HeroProps) {
             height={image?.asset?.metadata?.dimensions?.height || 1080}
             blurDataURL={image?.asset?.metadata?.lqip || ""}
             alt={image?.asset?.altText || "profile picture"}
+            style={{ viewTransitionName: `image-${image?.asset?._id}` }}
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-0 w-full">

@@ -39,11 +39,11 @@ export default async function Home() {
               <Link key={project._id} href={`/projects/${project.slug?.current}`} className="group hover:text-primary transition-colors">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between py-8">
                   <div className="flex flex-col gap-4 grow basis-1/4">
-                    <h3 className="text-2xl uppercase">{project.title}</h3>
+                    <h3 className="text-2xl uppercase" style={{ viewTransitionName: `title-${project.title}` }}>{project.title}</h3>
                   </div>
 
                   <div className="grow basis-1/4">
-                    <p className="text-lg leading-6">{project.description}</p>
+                    <p className="text-lg leading-6" style={{ viewTransitionName: `description-${project.description}` }} >{project.description}</p>
                   </div>
 
                   {/* categories */}
@@ -67,7 +67,7 @@ export default async function Home() {
                           alt={project.title || `Image for project ${project._id}`}
                           width={356}
                           height={200}
-                          style={{ viewTransitionName: `image-${project._id}` }}
+                          style={{ viewTransitionName: `image-${project.image?.asset?._id}` }}
                           className="object-cover w-full h-full"
                         />
                       </div>

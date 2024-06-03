@@ -1149,7 +1149,7 @@ export type GetHeroQueryVariables = Exact<{
 }>;
 
 
-export type GetHeroQuery = { __typename?: 'RootQuery', allHero: Array<{ __typename?: 'Hero', description?: string | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null }> };
+export type GetHeroQuery = { __typename?: 'RootQuery', allHero: Array<{ __typename?: 'Hero', description?: string | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null }> };
 
 export type GetAllPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1166,19 +1166,19 @@ export type GetPageQuery = { __typename?: 'RootQuery', allPage: Array<{ __typena
 export type GetAllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, description?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null }> };
+export type GetAllProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, description?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null }> };
 
 export type GetProjectQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null, content?: Array<{ __typename?: 'ProjectTopic', _id?: string | null, title?: string | null, contentRaw?: any | null } | null> | null }> };
+export type GetProjectQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, description?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, altText?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null, content?: Array<{ __typename?: 'ProjectTopic', _id?: string | null, title?: string | null, contentRaw?: any | null } | null> | null }> };
 
 export type GetAllProjectCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProjectCategoriesQuery = { __typename?: 'RootQuery', allProjectCategory: Array<{ __typename?: 'ProjectCategory', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, name?: string | null, description?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', url?: string | null } | null } | null }> };
+export type GetAllProjectCategoriesQuery = { __typename?: 'RootQuery', allProjectCategory: Array<{ __typename?: 'ProjectCategory', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, name?: string | null, description?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null }> };
 
 export type GetAllProjectTopicsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1226,6 +1226,7 @@ export const GetHeroDocument = gql`
         y
       }
       asset {
+        _id
         url
         altText
         metadata {
@@ -1293,6 +1294,7 @@ export const GetAllProjectsDocument = gql`
         y
       }
       asset {
+        _id
         url
         altText
         metadata {
@@ -1318,6 +1320,7 @@ export const GetProjectDocument = gql`
     _createdAt
     _updatedAt
     title
+    description
     slug {
       current
     }
@@ -1335,6 +1338,7 @@ export const GetProjectDocument = gql`
         y
       }
       asset {
+        _id
         url
         altText
         metadata {
@@ -1368,6 +1372,7 @@ export const GetAllProjectCategoriesDocument = gql`
     description
     image {
       asset {
+        _id
         url
       }
     }
