@@ -38,6 +38,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <main>{children}</main>
 
           <Footer />
+
+          <Analytics />
         </body>
       </html>
     </ViewTransitions>

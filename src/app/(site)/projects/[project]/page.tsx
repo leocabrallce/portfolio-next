@@ -81,7 +81,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
             project.content?.map((block) => (
               <div key={block?._id} id={block?._id || ""} data-hash={block?._id} className='w-full grid grid-cols-1 md:grid-cols-5 py-16'>
                 <div className='md:col-span-2 h-full'>
-                  <h3 className='sticky top-8 bottom-8'>{block?.title}</h3>
+                  <span className='sticky top-8 bottom-8'>{block?.title}</span>
                 </div>
 
                 <div className='md:col-span-3 prose text-lg prose-headings:font-normal max-w-none text-primary-dark dark:text-primary-light dark:prose-invert'>
