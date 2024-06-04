@@ -6,6 +6,7 @@ import { clsx } from "clsx";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -40,6 +41,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <Footer />
 
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ViewTransitions>
