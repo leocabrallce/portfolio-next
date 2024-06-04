@@ -4,6 +4,12 @@ import { sdk } from "@/lib/graphql-request";
 import HeroProject from '@/components/HeroProject/HeroProject';
 import CodeSandboxPreview from '@/components/CodeSandboxPreview';
 import ProjectNavigation from '@/components/ProjectNavigation';
+import Image from 'next/image';
+import { getImageUrl } from '@/utils/imageUrlBuilder';
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "@/utils/sanityClient";
+
+const builder = imageUrlBuilder(sanityClient);
 
 type ProjectPageProps = {
   params: {
@@ -11,9 +17,38 @@ type ProjectPageProps = {
   };
 };
 
+type ImageProps = {
+  value: {
+    _key: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    },
+    _type: string;
+  },
+  isInline: boolean;
+  index: number;
+  renderNode: Function;
+};
+
 const PTcomponents = {
   types: {
     codeSandboxPreview: CodeSandboxPreview,
+    image: ({ value }: ImageProps) => {
+      // builder.image(data.source).rect(left, top, croppedWidth, croppedHeight).fit("max").auto("format").dpr(2).quality(100).url();
+      const url = builder.image(value?.asset?._ref).fit('max').auto('format').dpr(2).quality(100).url();
+
+      return (
+        <Image
+          key={value?._key}
+          src={url}
+          alt={value?.asset?._ref}
+          layout='responsive'
+          width={value?.asset?._type === 'image' ? 600 : 800}
+          height={value?.asset?._type === 'image' ? 400 : 600}
+        />
+      );
+    }
   }
 };
 
@@ -49,7 +84,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
                   <h3 className='sticky top-8 bottom-8'>{block?.title}</h3>
                 </div>
 
-                <div className='md:col-span-3 prose text-lg max-w-none text-primary-dark dark:text-primary-light dark:prose-invert'>
+                <div className='md:col-span-3 prose text-lg prose-headings:font-normal max-w-none text-primary-dark dark:text-primary-light dark:prose-invert'>
                   <PortableText value={block?.contentRaw} components={PTcomponents} />
                 </div>
               </div>

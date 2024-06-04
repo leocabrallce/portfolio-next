@@ -14,7 +14,12 @@ const projectTopic = defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }, { type: 'codeSandboxPreview' }]
+      of: [
+        { type: 'block' },
+        { type: 'image' },
+        { type: 'code' },
+        { type: 'codeSandboxPreview' }
+      ]
     }
   ]
 });

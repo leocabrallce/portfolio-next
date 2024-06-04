@@ -31,7 +31,7 @@ export type Block = {
   style?: Maybe<Scalars['String']['output']>;
 };
 
-export type BlockOrCodeSandboxPreview = Block | CodeSandboxPreview;
+export type BlockOrCodeOrCodeSandboxPreviewOrImage = Block | Code | CodeSandboxPreview | Image;
 
 export type BooleanFilter = {
   /** Checks if the value is equal to the given input. */
@@ -40,6 +40,24 @@ export type BooleanFilter = {
   is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is not equal to the given input. */
   neq?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type Code = {
+  __typename?: 'Code';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  code?: Maybe<Scalars['String']['output']>;
+  filename?: Maybe<Scalars['String']['output']>;
+  highlightedLines?: Maybe<Array<Maybe<Scalars['Float']['output']>>>;
+  language?: Maybe<Scalars['String']['output']>;
+};
+
+export type CodeFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  code?: InputMaybe<StringFilter>;
+  filename?: InputMaybe<StringFilter>;
+  language?: InputMaybe<StringFilter>;
 };
 
 export type CodeSandboxPreview = {
@@ -62,6 +80,14 @@ export type CodeSandboxPreviewSorting = {
   _type?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   url?: InputMaybe<SortOrder>;
+};
+
+export type CodeSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  code?: InputMaybe<SortOrder>;
+  filename?: InputMaybe<SortOrder>;
+  language?: InputMaybe<SortOrder>;
 };
 
 export type CrossDatasetReference = {
