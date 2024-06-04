@@ -5,6 +5,7 @@ import { Inter, Josefin_Sans } from 'next/font/google';
 import { clsx } from "clsx";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ['latin'],
