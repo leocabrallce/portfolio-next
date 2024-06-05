@@ -1,8 +1,8 @@
-import type { Image as SanityImage } from "@/graphql/types";
+import type { Image as SanityImage } from "@/graphql/generated";
 import Image from "next/image";
 // TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
 import { getImageUrl } from "@/utils/imageUrlBuilder";
-import { Project } from "@/graphql/types";
+import { Project } from "@/graphql/generated";
 import moment from "moment";
 
 type Props = {

@@ -2,7 +2,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/20/solid";
 import { Transition } from "@headlessui/react";
-import { Experience as ExperienceType } from "@/graphql/types";
+import { Experience as ExperienceType } from "@/graphql/generated";
 import moment from "moment";
 
 type Props = {

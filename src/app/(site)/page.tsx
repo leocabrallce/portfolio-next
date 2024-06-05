@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import type { Image as SanityImage, Project as ProjectType } from "@/graphql/types";
+import type { Image as SanityImage, Project as ProjectType } from "@/graphql/generated";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { sdk } from "@/lib/graphql-request";
-import { SortOrder } from "@/graphql/types";
+import { SortOrder } from "@/graphql/generated";
 // TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
 import { getImageUrl } from "@/utils/imageUrlBuilder";
 import Hero from "@/components/Hero/Hero";

@@ -1,4 +1,4 @@
-import { getSdk } from "@/graphql/types";
+import { getSdk } from "@/graphql/generated";
 import { GraphQLClient } from "graphql-request";
 
 const GRAPHQL_URL: string = process.env.NEXT_PUBLIC_GRAPHQL_API_URL as string;

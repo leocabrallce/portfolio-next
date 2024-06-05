@@ -1,4 +1,4 @@
-import type { Image as SanityImage } from "@/graphql/types";
+import type { Image as SanityImage } from "@/graphql/generated";
 import Image from "next/image";
 import { sdk } from "@/lib/graphql-request";
 // TODO: Create a hook with useCallback to memoize getImageUrl based on the image object

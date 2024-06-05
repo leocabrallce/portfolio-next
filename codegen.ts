@@ -5,7 +5,7 @@ const config: CodegenConfig = {
   schema: "https://mt1hxcmm.api.sanity.io/v1/graphql/production/default",
   documents: "src/graphql/*.(graphql)",
   generates: {
-    "src/graphql/types.ts": {
+    "src/graphql/generated.ts": {
       plugins: [
         "typescript",
         "typescript-operations",

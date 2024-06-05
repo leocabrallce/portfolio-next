@@ -1,6 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "@/utils/sanityClient";
-import type { Image } from "@/graphql/types";
+import type { Image } from "@/graphql/generated";
 
 const builder = imageUrlBuilder(sanityClient);
 

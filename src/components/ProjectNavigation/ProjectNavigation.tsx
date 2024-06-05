@@ -1,5 +1,5 @@
 "use client";
-import { Project } from "@/graphql/types";
+import { Project } from "@/graphql/generated";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";

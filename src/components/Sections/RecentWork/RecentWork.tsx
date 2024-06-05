@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { getImageUrl } from '@/utils/imageUrlBuilder';
-import type { Project, Image as SanityImage } from '@/graphql/types';
+import type { Project, Image as SanityImage } from '@/graphql/generated';
 
 type Props = {
   projects: Project[];
