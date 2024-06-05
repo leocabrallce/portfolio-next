@@ -7,15 +7,14 @@ export const metadata: Metadata = {
   description: "Leo Cabral's personal website",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+type Props = Readonly<{ children: React.ReactNode; }>;
+
+export default function RootAdminLayout({ children }: Props) {
   return (
     <html lang="en">
       <body>
         {children}
+
         <Analytics />
       </body>
     </html>
