@@ -42,8 +42,20 @@ function FloatingNavbar({ items }: Props) {
   }, [usedTheme]);
 
   useEffect(() => {
-    // TODO: add a keyboard listener for ESC
-  });
+    if (visible) {
+      const handleEsc = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          setVisible(false);
+        }
+      };
+
+      document.addEventListener("keydown", handleEsc);
+
+      return () => {
+        document.removeEventListener("keydown", handleEsc);
+      };
+    }
+  }, [visible]);
 
   return (
     <div className="fixed top-8 right-8 z-40">
