@@ -3,9 +3,20 @@
 import { validateContactForm } from "./actions";
 import { useFormState, useFormStatus } from "react-dom";
 
+// FIXME: This is in the same file just for demo purposes. In a real project, this should be in a separate file.
+// the useFormStatus hook get the context of the form status, so it needs to be called inside the form component
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button disabled={pending} type="submit" className="group relative w-full flex justify-center py-2 px-4 mt-16 border border-transparent text-sm font-medium transition-colors text-primary-light hover:text-primary-dark bg-primary-dark hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light border-primary-dark dark:border-primary-light">
+      {pending ? "Sending..." : "Send"}
+    </button>
+  );
+}
+
 function Contact() {
   const [state, formAction] = useFormState(validateContactForm, { status: 200, data: { message: "" } });
-  const { pending } = useFormStatus();
 
   return (
     <div className="mx-auto max-w-7xl px-4 my-32 sm:px-6 lg:px-8">
@@ -39,9 +50,7 @@ function Contact() {
           )}
 
           <div>
-            <button disabled={pending} type="submit" className="group relative w-full flex justify-center py-2 px-4 mt-16 border border-transparent text-sm font-medium transition-colors text-primary-light hover:text-primary-dark bg-primary-dark hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light border-primary-dark dark:border-primary-light">
-              {pending ? "Sending..." : "Send"}
-            </button>
+            <SubmitButton />
           </div>
         </form>
       </div>
