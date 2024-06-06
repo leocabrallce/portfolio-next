@@ -57,6 +57,8 @@ function FloatingNavbar({ items }: Props) {
     }
   }, [visible]);
 
+  const buttonClasses = "flex items-center justify-center py-4 border-b-2 transition-colors";
+
   return (
     <div className="fixed top-8 right-8 z-40">
       <button
@@ -73,9 +75,10 @@ function FloatingNavbar({ items }: Props) {
           <div className="z-40 w-full h-full m-0 pt-32 bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light">
 
             <div className="flex flex-col gap-4">
-              The current theme is: <span>{usedTheme}</span>
-              <button onClick={() => setTheme('light')}>Light Mode</button>
-              <button onClick={() => setTheme('dark')}>Dark Mode</button>
+              <div className="flex justify-center gap-16 border-tra">
+                <button onClick={() => setTheme('light')} className={cn(buttonClasses, "border-primary-dark", { "hover:border-primary-light": theme !== "light" })}>Light Mode</button>
+                <button onClick={() => setTheme('dark')} className={cn(buttonClasses, "border-primary-light", { "hover:border-primary-dark": theme !== "dark" })}>Dark Mode</button>
+              </div>
             </div>
           </div>
         </div>
