@@ -67,6 +67,7 @@ function FloatingNavbar() {
   return (
     <div className="fixed top-8 right-8 z-40">
       <button
+        aria-label="toggle menu"
         type="button"
         tabIndex={0}
         className={buttonClassNames}
