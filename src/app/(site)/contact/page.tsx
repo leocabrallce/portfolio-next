@@ -1,6 +1,7 @@
 "use client";
 
 import { validateContactForm } from "./actions";
+import { useRef } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 // FIXME: This is in the same file just for demo purposes. In a real project, this should be in a separate file.
@@ -17,13 +18,19 @@ function SubmitButton() {
 
 function Contact() {
   const [state, formAction] = useFormState(validateContactForm, { status: 200, data: { message: "" } });
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // after successful submission, reset the form
+  if (state.status === 200) {
+    formRef.current?.reset();
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-4 my-32 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">
         <h1 className="font-title text-7xl uppercase">Let&apos;s start a project together!</h1>
 
-        <form className="mt-8 space-y-6" action={formAction}>
+        <form ref={formRef} className="mt-8 space-y-6" action={formAction}>
           <div>
             <label htmlFor="name" className="sr-only">Name</label>
             <input id="name" name="name" type="text" autoComplete="name" className="appearance-none  relative block w-full px-3 py-2 border-b border-primary-dark dark:border-primary-light placeholder-gray-500 focus:outline-none focus:ring-primary-light focus:border-primary-light focus:z-10 sm:text-sm" placeholder="Name" />
@@ -58,4 +65,4 @@ function Contact() {
   );
 }
 
-export default Contact;;
+export default Contact;
