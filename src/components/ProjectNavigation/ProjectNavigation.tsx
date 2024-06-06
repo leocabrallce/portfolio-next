@@ -3,7 +3,7 @@ import { Project } from "@/graphql/generated";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import clsx from "clsx";
+import { cn } from "@/utils/classNames";
 import Script from "next/script";
 
 type ProjectNavigationProps = {
@@ -25,7 +25,7 @@ function ProjectNavigation({ project }: ProjectNavigationProps) {
         {
           project.content?.map((block) => (
             <li key={block?._id}>
-              <Link href={`#${block?._id}`} className={clsx(pathname === `#${block?._id}` && "text-primary", "transition-colors")}>
+              <Link href={`#${block?._id}`} className={cn(pathname === `#${block?._id}` && "text-primary", "transition-colors")}>
                 {block?.title}
               </Link>
             </li>

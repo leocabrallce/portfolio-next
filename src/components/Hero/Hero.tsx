@@ -1,6 +1,5 @@
 import type { Image as SanityImage } from "@/graphql/generated";
 import Image from "next/image";
-import { sdk } from "@/lib/graphql-request";
 // TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
 import { getImageUrl } from "@/utils/imageUrlBuilder";
 import { Navbar } from "@/components/Navbar";
@@ -11,7 +10,6 @@ type HeroProps = {
   subtitle: string;
   image: SanityImage;
 };
-
 
 async function Hero({ title, description, subtitle, image }: HeroProps) {
   const pages: { name: string; link: string; }[] = [

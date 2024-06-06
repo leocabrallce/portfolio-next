@@ -43,7 +43,6 @@ const PTcomponents = {
           key={value?._key}
           src={url}
           alt={value?.asset?._ref}
-          layout='responsive'
           width={value?.asset?._type === 'image' ? 600 : 800}
           height={value?.asset?._type === 'image' ? 400 : 600}
         />

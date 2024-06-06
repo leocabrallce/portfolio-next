@@ -2,11 +2,12 @@ import "../globals.css";
 import type { Metadata } from "next";
 import { ViewTransitions } from "next-view-transitions";
 import { Inter, Josefin_Sans } from 'next/font/google';
-import { clsx } from "clsx";
+import { cn } from "@/utils/classNames";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from 'next-themes';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -28,22 +29,32 @@ export default async function RootSiteLayout({ children }: Props) {
     // { name: "About", link: "/about" },
     // { name: "Projects", link: "/projects" },
   ];
-  const rootClassNames = clsx(inter.variable, josefinSans.variable, "scroll-smooth bg-primary-light text-primary-dark dark:bg-primary-dark dark:text-primary-light");
+  const rootClassNames = cn(inter.variable, josefinSans.variable, "transition-colors scroll-smooth bg-primary-light text-primary-dark dark:bg-primary-dark dark:text-primary-light");
 
   return (
     <ViewTransitions>
-      <html lang="en" className={rootClassNames}>
+
+      <html lang="en" className={rootClassNames} >
         <body className="overscroll-y-none">
-          <FloatingNavbar items={pages} />
+          <ThemeProvider>
+            {/*
+              Suppressing hydration warning because the dark mode updates the element in the client side.
+              This property only applies one level deep, so it won't block hydration warnings on other elements.
+            */}
+            <div suppressContentEditableWarning>
+              <FloatingNavbar items={pages} />
 
-          <main>{children}</main>
+              <main>{children}</main>
 
-          <Footer />
+              <Footer />
 
-          <Analytics />
-          <SpeedInsights />
+              <Analytics />
+              <SpeedInsights />
+            </div>
+          </ThemeProvider>
         </body>
       </html>
+
     </ViewTransitions>
   );
 }

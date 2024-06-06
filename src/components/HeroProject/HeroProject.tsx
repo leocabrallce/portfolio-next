@@ -59,7 +59,6 @@ function HeroProject({ project }: Props) {
       <Image
         priority
         placeholder="blur"
-        layout="responsive"
         src={heroImageUrl}
         alt={title || "Project Image"}
         blurDataURL={image?.asset?.metadata?.lqip || ""}
