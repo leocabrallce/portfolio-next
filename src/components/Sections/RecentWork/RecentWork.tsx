@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { getImageUrl } from '@/utils/imageUrlBuilder';
 import type { Project, Image as SanityImage } from '@/graphql/generated';
+import { sdk } from "@/lib/graphql-request";
 
-type Props = {
-  projects: Project[];
-};
+async function RecentWork() {
+  const getAllProjects = await sdk.GetAllProjects();
+  const projects = getAllProjects.data.allProject;
 
-function RecentWork({ projects }: Props) {
   return (
     <section>
       <h2 className="font-title uppercase mb-8 mt-16 md:my-24 text-5xl md:text-6xl">

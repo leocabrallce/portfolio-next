@@ -1,13 +1,10 @@
-type Props = {
-  services: {
-    _id?: string | null | undefined;
-    title?: string | null | undefined;
-    description?: string | null | undefined;
-    order?: number | null | undefined;
-  }[];
-};
+import { sdk } from "@/lib/graphql-request";
+import { SortOrder } from "@/graphql/generated";
 
-function Services({ services }: Props) {
+async function Services() {
+  const getAllServices = await sdk.GetAllServices({ sort: [{ order: SortOrder.Asc }] });
+  const services = getAllServices.data.allService;
+
   return (
     <section>
       <h2 className="font-title uppercase mb-8 mt-16 md:my-24 text-5xl md:text-6xl">
