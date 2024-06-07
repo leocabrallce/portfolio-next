@@ -25,10 +25,6 @@ export const metadata: Metadata = {
 type Props = Readonly<{ children: React.ReactNode; }>;
 
 export default async function RootSiteLayout({ children }: Props) {
-  const pages: { name: string; link: string; }[] = [
-    // { name: "About", link: "/about" },
-    // { name: "Projects", link: "/projects" },
-  ];
   const rootClassNames = cn(inter.variable, josefinSans.variable, "transition-colors scroll-smooth bg-primary-light text-primary-dark dark:bg-primary-dark dark:text-primary-light");
 
   return (
@@ -42,7 +38,7 @@ export default async function RootSiteLayout({ children }: Props) {
               This property only applies one level deep, so it won't block hydration warnings on other elements.
             */}
             <div suppressContentEditableWarning>
-              <FloatingNavbar items={pages} />
+              <FloatingNavbar />
 
               <main>{children}</main>
 
