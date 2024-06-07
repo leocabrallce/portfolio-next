@@ -10,14 +10,14 @@ type Props = {
 function RecentWork({ projects }: Props) {
   return (
     <section>
-      <h2 className="font-title uppercase my-24 text-6xl">
+      <h2 className="font-title uppercase mb-8 mt-16 md:my-24 text-5xl md:text-6xl">
         Recent work
       </h2>
 
       <div className="flex flex-col divide-y">
         {projects.map((project) => (
           <Link key={project._id} href={`/projects/${project.slug?.current}`} className="group hover:text-primary transition-colors">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between py-8 gap-8">
+            <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-between py-8 gap-8">
               <div className="flex flex-col gap-4 grow basis-1/4">
                 <h3 className="text-2xl uppercase" style={{ viewTransitionName: `title-${project._id}` }}>{project.title}</h3>
               </div>
@@ -30,7 +30,7 @@ function RecentWork({ projects }: Props) {
               <div className="flex flex-col shrink-0 md:flex-row md:items-center md:justify-between grow basis-1/4">
                 {/* pills with categories */}
                 {project.projectCategories?.map((category) => (
-                  <span key={category?._id} className="bg-primary-light/50 dark:bg-primary-dark/50 border border-primary-dark/25 dark:border-primary-light/25 px-4 py-2 rounded-full text-xs mr-2">
+                  <span key={category?._id} className="w-fit px-4 py-2 rounded-full text-xs mr-2 border bg-primary-light/50 dark:bg-primary-dark/50 border-primary-dark/25 dark:border-primary-light/25">
                     {category?.name}
                   </span>
                 ))}

@@ -2,7 +2,6 @@ import type { Image as SanityImage } from "@/graphql/generated";
 import Image from "next/image";
 // TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
 import { getImageUrl } from "@/utils/imageUrlBuilder";
-import { Navbar } from "@/components/Navbar";
 
 type HeroProps = {
   title: string;
@@ -12,34 +11,27 @@ type HeroProps = {
 };
 
 async function Hero({ title, description, subtitle, image }: HeroProps) {
-  const pages: { name: string; link: string; }[] = [
-    // { name: "About", link: "/about" },
-    // { name: "Projects", link: "/projects" },
-  ];
-
   const heroImageUrl = getImageUrl(image as SanityImage);
 
   return (
-    <div className="relative h-screen w-screen max-w-full border-[32px] border-primary-dark dark:border-primary-light bg-primary-light dark:bg-primary-dark text-lg ">
-      <div className="flex justify-between h-full">
-        <div className="basis-3/5 col-span-2 ml-16 flex flex-col justify-between max-h-screen">
-          <div className="flex flex-col justify-between pt-16 h-1/2 grow-0 shrink-0">
-            <Navbar items={pages} />
-
+    <div className="relative h-screen w-screen max-w-full border-[24px] md:border-[32px] border-primary-dark dark:border-primary-light bg-primary-light dark:bg-primary-dark text-lg ">
+      <div className="flex justify-center md:justify-between h-full">
+        <div className="basis-3/5 col-span-2 md:ml-16 flex flex-col justify-between max-h-screen">
+          <div className="flex flex-col justify-around pt-16 h-1/2 grow-0 shrink-0">
             <div
-              className="text-[6.75rem] leading-[5.5rem] -mb-4 -ml-3 font-title font-normal uppercase"
+              className="text-7xl md:text-[6.75rem] leading-[4rem] md:leading-[5.5rem] -mb-4 -ml-3 font-title font-normal uppercase"
               style={{ viewTransitionName: `title-${title}` }}
             >
               {title}
             </div>
           </div>
           <div className="flex flex-col justify-end grow-0 shrink-0" style={{ viewTransitionName: "hero-description" }}>
-            <div className="p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark dark:border-primary-light">
+            <div className="p-4 md:p-16 mb-16 h-fit border-4 border-l-8 border-primary-dark dark:border-primary-light">
               <p className="text-lg leading-6" style={{ viewTransitionName: `description-${description}` }}>{description}</p>
             </div>
           </div>
         </div>
-        <div className="grow relative">
+        <div className="hidden md:block grow relative">
           <Image
             priority
             placeholder="blur"

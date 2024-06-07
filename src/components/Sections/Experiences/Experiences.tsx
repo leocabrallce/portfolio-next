@@ -12,7 +12,7 @@ type Props = {
 function Experiences({ experiences }: Props) {
   return (
     <section>
-      <h2 className="font-title uppercase my-24 text-6xl">
+      <h2 className="font-title uppercase mb-8 mt-16 md:my-24 text-5xl md:text-6xl">
         Experiences
       </h2>
 
@@ -23,11 +23,11 @@ function Experiences({ experiences }: Props) {
               <>
                 <dt>
                   <DisclosureButton className="flex w-full items-start justify-between text-left ">
-                    <div className="grid grid-cols-4 w-full">
-                      <span className="leading-5 text-2xl uppercase">{experience.company}</span>
-                      <span className="text-lg">{moment(experience.startDate).format("MMM YYYY")} - {experience.endDate ? moment(experience.endDate).format("MMM YYYY") : "Present"}</span>
-                      <span className="text-lg">{experience.location}</span>
-                      <span className="text-lg">{experience.title}</span>
+                    <div className="grid grid-cols-1 md:grid-cols-4 w-full gap-4">
+                      <span className="leading-10 md:leading-5 text-2xl uppercase">{experience.company}</span>
+                      <span className="text-lg leading-none md:leading-normal">{moment(experience.startDate).format("MMM YYYY")} - {experience.endDate ? moment(experience.endDate).format("MMM YYYY") : "Present"}</span>
+                      <span className="text-lg leading-none md:leading-normal">{experience.location}</span>
+                      <span className="text-lg leading-none md:leading-normal">{experience.title}</span>
                     </div>
                     <span className="ml-6 flex h-7 items-center">
                       {open ? (

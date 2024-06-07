@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import type { Image as SanityImage, Project as ProjectType } from "@/graphql/generated";
-import Image from "next/image";
-import { Link } from "next-view-transitions";
+import type { Image as SanityImage } from "@/graphql/generated";
 import { sdk } from "@/lib/graphql-request";
 import { SortOrder } from "@/graphql/generated";
-// TODO: Create a hook with useCallback to memoize getImageUrl based on the image object
-import { getImageUrl } from "@/utils/imageUrlBuilder";
 import Hero from "@/components/Hero/Hero";
 import Experiences from "@/components/Sections/Experiences";
 import Services from "@/components/Sections/Services";
@@ -33,7 +29,7 @@ export default async function Home() {
     <div>
       <Hero title="Leo Cabral" subtitle="Currently living in Barcelona" description={hero.description || ""} image={hero.image as SanityImage} />
 
-      <div className="my-8 mx-24 flex flex-col gap-16">
+      <div className="my-8 mx-6 md:mx-24 flex flex-col gap-16">
         <RecentWork projects={projects} />
 
         <Services services={services} />
