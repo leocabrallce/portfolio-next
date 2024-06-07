@@ -18,7 +18,7 @@ function HeroProject({ project }: Props) {
       <div className="min-h-[60dvh] pt-24 md:pt-0 md:flex md:items-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light">
         <div className="flex flex-col h-full md:flex-row items-center justify-between gap-20 md:gap-40 p-8 pt-10">
           <h1
-            className="font-title uppercase text-6xl basis-2/3 mt-1 leading-[0.9]"
+            className="font-title uppercase text-5xl md:text-6xl basis-2/3 mt-1 leading-[0.9]"
             style={{ viewTransitionName: `title-${_id}` }}
           >
             {title}
