@@ -1213,6 +1213,13 @@ export type GetPageQueryVariables = Exact<{
 
 export type GetPageQuery = { __typename?: 'RootQuery', allPage: Array<{ __typename?: 'Page', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, contentRaw?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null }> };
 
+export type GetLatestProjectsQueryVariables = Exact<{
+  limit: Scalars['Int']['input'];
+}>;
+
+
+export type GetLatestProjectsQuery = { __typename?: 'RootQuery', allProject: Array<{ __typename?: 'Project', _id?: string | null, _createdAt?: any | null, _updatedAt?: any | null, title?: string | null, description?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', crop?: { __typename?: 'SanityImageCrop', bottom?: number | null, left?: number | null, top?: number | null, right?: number | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', width?: number | null, height?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null, metadata?: { __typename?: 'SanityImageMetadata', lqip?: string | null, dimensions?: { __typename?: 'SanityImageDimensions', width?: number | null, height?: number | null } | null } | null } | null } | null, projectCategories?: Array<{ __typename?: 'ProjectCategory', _id?: string | null, name?: string | null } | null> | null }> };
+
 export type GetAllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1319,9 +1326,52 @@ export const GetPageDocument = gql`
   }
 }
     `;
+export const GetLatestProjectsDocument = gql`
+    query GetLatestProjects($limit: Int!) {
+  allProject(limit: $limit, sort: [{_createdAt: DESC}]) {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    description
+    slug {
+      current
+    }
+    image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
+      asset {
+        _id
+        url
+        metadata {
+          lqip
+          dimensions {
+            width
+            height
+          }
+        }
+      }
+    }
+    projectCategories {
+      _id
+      name
+    }
+  }
+}
+    `;
 export const GetAllProjectsDocument = gql`
     query GetAllProjects {
-  allProject {
+  allProject(sort: [{_createdAt: DESC}]) {
     _id
     _createdAt
     _updatedAt
@@ -1457,6 +1507,7 @@ const GetAllExperiencesDocumentString = print(GetAllExperiencesDocument);
 const GetHeroDocumentString = print(GetHeroDocument);
 const GetAllPagesDocumentString = print(GetAllPagesDocument);
 const GetPageDocumentString = print(GetPageDocument);
+const GetLatestProjectsDocumentString = print(GetLatestProjectsDocument);
 const GetAllProjectsDocumentString = print(GetAllProjectsDocument);
 const GetProjectDocumentString = print(GetProjectDocument);
 const GetAllProjectCategoriesDocumentString = print(GetAllProjectCategoriesDocument);
@@ -1475,6 +1526,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetPage(variables: GetPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPageQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetPageQuery>(GetPageDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetPage', 'query', variables);
+    },
+    GetLatestProjects(variables: GetLatestProjectsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetLatestProjectsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetLatestProjectsQuery>(GetLatestProjectsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetLatestProjects', 'query', variables);
     },
     GetAllProjects(variables?: GetAllProjectsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetAllProjectsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetAllProjectsQuery>(GetAllProjectsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllProjects', 'query', variables);

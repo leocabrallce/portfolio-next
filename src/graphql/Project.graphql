@@ -10,8 +10,8 @@ type Project {
   projectCategories: [ProjectCategory!]!
 }
 
-query GetAllProjects {
-  allProject {
+query GetLatestProjects($limit: Int!) {
+  allProject(limit: $limit, sort: [{ _createdAt: DESC }]) {
     _id
     _createdAt
     _updatedAt
@@ -52,6 +52,47 @@ query GetAllProjects {
   }
 }
 
+query GetAllProjects {
+  allProject(sort: [{ _createdAt: DESC }]) {
+    _id
+    _createdAt
+    _updatedAt
+    title
+    description
+    slug {
+      current
+    }
+    image {
+      crop {
+        bottom
+        left
+        top
+        right
+      }
+      hotspot {
+        width
+        height
+        x
+        y
+      }
+      asset {
+        _id
+        url
+        metadata {
+          lqip
+          dimensions {
+            width
+            height
+          }
+        }
+      }
+    }
+    projectCategories {
+      _id
+      name
+    }
+  }
+}
 
 query GetProject($slug: String!) {
   allProject(where: { slug: { current: { eq: $slug } } }) {

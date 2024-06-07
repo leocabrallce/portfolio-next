@@ -63,7 +63,6 @@ function FloatingNavbar() {
     router.push(link);
   };
 
-
   return (
     <div className="fixed top-6 right-6 md:top-8 md:right-8 z-40">
       <button
