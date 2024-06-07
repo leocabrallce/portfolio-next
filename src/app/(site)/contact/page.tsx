@@ -10,7 +10,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button aria-label="submit contact form" disabled={pending} type="submit" className="group relative w-full flex justify-center py-2 px-4 mt-16 border border-transparent text-sm font-medium transition-colors text-primary-light hover:text-primary-dark bg-primary-dark hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light border-primary-dark dark:border-primary-light">
+    <button aria-label="submit contact form" disabled={pending} type="submit" className="group relative w-full flex justify-center py-2 px-4 mt-16 border text-sm font-medium transition-colors text-primary-light hover:text-primary-dark bg-primary-dark hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light border-primary-dark dark:border-primary-light dark:text-primary-dark dark:hover:text-primary-light dark:bg-primary-light dark:hover:bg-primary-dark">
       {pending ? "Sending..." : "Send"}
     </button>
   );
@@ -26,7 +26,7 @@ function Contact() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 my-32 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl my-32 px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">
         <h1 className="font-title text-5xl md:text-7xl uppercase">Let&apos;s start a project together!</h1>
 

@@ -74,7 +74,7 @@ async function ProjectPage({ params }: ProjectPageProps) {
     <div>
       <HeroProject project={project} />
 
-      <div className='mx-8 my-24 flex flex-col gap-16'>
+      <div className='mx-6 md:mx-8 my-24 flex flex-col gap-16'>
         <article className='text-lg mt-5 flex flex-col divide-y'>
           {
             project.content?.map((block) => (

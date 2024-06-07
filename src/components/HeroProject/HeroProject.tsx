@@ -10,17 +10,12 @@ type Props = {
 };
 
 function HeroProject({ project }: Props) {
-  const pages: { name: string; link: string; }[] = [
-    // { name: "About", link: "/about" },
-    // { name: "Projects", link: "/projects" },
-  ];
-
   const { _id, _updatedAt, title, description, image, projectCategories } = project;
   const heroImageUrl = getImageUrl(image as SanityImage);
 
   return (
     <>
-      <div className="min-h-[60dvh] md:flex md:items-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light">
+      <div className="min-h-[60dvh] pt-24 md:pt-0 md:flex md:items-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light">
         <div className="flex flex-col h-full md:flex-row items-center justify-between gap-20 md:gap-40 p-8 pt-10">
           <h1
             className="font-title uppercase text-6xl basis-2/3 mt-1 leading-[0.9]"
