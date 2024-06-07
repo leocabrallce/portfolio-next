@@ -11,7 +11,7 @@ async function RecentWork() {
         Recent work
       </h2>
 
-      <div className="flex flex-col divide-y">
+      <div className="flex flex-col">
         {projects.map((project) => (
           <ProjectRow key={project._id} project={project} />
         ))}
